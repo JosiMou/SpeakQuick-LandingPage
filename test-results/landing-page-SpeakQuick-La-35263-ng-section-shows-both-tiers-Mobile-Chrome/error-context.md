@@ -1,0 +1,286 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - img [ref=e6]
+          - generic [ref=e8]: Now with Whisper v3
+        - heading "Turn Audio Into Accurate Text." [level=1] [ref=e9]:
+          - text: Turn Audio Into
+          - generic [ref=e10]: Accurate Text.
+        - paragraph [ref=e11]: AI-powered transcription for podcasts, meetings, and interviews. Local processing, speaker detection, and export to any format.
+        - generic [ref=e12]:
+          - button "Download for macOS" [ref=e13] [cursor=pointer]:
+            - img [ref=e14]
+            - text: Download for macOS
+          - button "Watch Demo" [ref=e17] [cursor=pointer]
+        - generic [ref=e18]:
+          - generic [ref=e19]: macOS 13.0+
+          - generic [ref=e20]: "|"
+          - generic [ref=e21]: Free Trial · 60 Minutes
+          - generic [ref=e22]: "|"
+          - generic [ref=e23]: No subscription required
+      - generic [ref=e25]:
+        - generic [ref=e31]: SpeakQuick
+        - generic [ref=e32]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - img [ref=e37]
+              - generic [ref=e40]:
+                - generic [ref=e41]: Team_Meeting_Recording.m4a
+                - generic [ref=e42]: 24:32
+            - generic [ref=e45]: Transcribing...
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - generic [ref=e73]: JD
+              - generic [ref=e74]:
+                - generic [ref=e75]: John Doe · 00:00:15
+                - paragraph [ref=e76]: So the main takeaway from this quarter is that we need to focus on improving our transcription accuracy for technical terminology.
+            - generic [ref=e77]:
+              - generic [ref=e78]: SM
+              - generic [ref=e79]:
+                - generic [ref=e80]: Sarah Miller · 00:00:42
+                - paragraph [ref=e81]: Absolutely. I have been testing SpeakQuick with our medical recordings and the speaker detection is incredibly accurate.
+            - generic [ref=e82]:
+              - generic [ref=e83]: AK
+              - generic [ref=e84]:
+                - generic [ref=e85]: Alex Kim · 00:01:03
+                - paragraph [ref=e86]: The export options are also really flexible. We can get SRT files for subtitles...
+      - generic [ref=e88]:
+        - generic [ref=e89]: Scroll to explore
+        - img [ref=e90]
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - heading "Everything you need for transcription" [level=2] [ref=e96]
+        - paragraph [ref=e97]: Professional-grade transcription with the simplicity you expect from a Mac app.
+      - generic [ref=e98]:
+        - generic [ref=e104]: Feature Explorer
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - button "Transcription3" [ref=e107] [cursor=pointer]
+            - button "Export & Formats3" [ref=e108] [cursor=pointer]
+            - button "Privacy & Speed3" [ref=e109] [cursor=pointer]
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e113]: State-of-the-art speech recognition powered by OpenAI Whisper.
+              - generic [ref=e114]:
+                - button "Whisper AI Engine Powered by OpenAI's Whisper v3 model for industry-leading accuracy across 99 languages." [ref=e115] [cursor=pointer]:
+                  - generic [ref=e118]:
+                    - generic [ref=e119]:
+                      - img [ref=e121]
+                      - generic [ref=e124]: Whisper AI Engine
+                    - generic [ref=e125]: Powered by OpenAI's Whisper v3 model for industry-leading accuracy across 99 languages.
+                - button "Speaker Diarization Automatically identifies and labels different speakers in your audio files." [ref=e126] [cursor=pointer]:
+                  - generic [ref=e129]:
+                    - generic [ref=e130]:
+                      - img [ref=e132]
+                      - generic [ref=e137]: Speaker Diarization
+                    - generic [ref=e138]: Automatically identifies and labels different speakers in your audio files.
+                - button "Real-time Transcription Transcribe live audio from your microphone with minimal latency." [ref=e139] [cursor=pointer]:
+                  - generic [ref=e142]:
+                    - generic [ref=e143]:
+                      - img [ref=e145]
+                      - generic [ref=e147]: Real-time Transcription
+                    - generic [ref=e148]: Transcribe live audio from your microphone with minimal latency.
+            - generic [ref=e150]:
+              - generic [ref=e151]:
+                - img [ref=e153]
+                - heading "Whisper AI Engine" [level=3] [ref=e156]
+              - paragraph [ref=e157]: Powered by OpenAI's Whisper v3 model for industry-leading accuracy across 99 languages.
+              - list [ref=e158]:
+                - listitem [ref=e159]:
+                  - generic [ref=e161]: 99+ languages supported with native accuracy
+                - listitem [ref=e162]:
+                  - generic [ref=e164]: Handles accents, background noise, and technical jargon
+                - listitem [ref=e165]:
+                  - generic [ref=e167]: Local processing - your audio never leaves your Mac
+              - generic [ref=e170]:
+                - img [ref=e172]
+                - generic [ref=e175]: Whisper AI Engine Demo
+    - generic [ref=e177]:
+      - generic [ref=e178]:
+        - heading "Why SpeakQuick?" [level=2] [ref=e179]
+        - paragraph [ref=e180]: Built specifically for macOS with privacy and performance at its core. No subscriptions, no cloud uploads, no compromises.
+      - generic [ref=e181]:
+        - generic [ref=e185]:
+          - generic [ref=e187]:
+            - generic [ref=e188]:
+              - generic [ref=e191]: Mac
+              - img [ref=e193]
+            - generic [ref=e195]:
+              - img [ref=e197]
+              - paragraph [ref=e201]: No cloud
+            - paragraph [ref=e202]: 100% Private
+          - generic [ref=e203]:
+            - img [ref=e205]
+            - heading "Local First" [level=3] [ref=e207]
+          - paragraph [ref=e208]: Your audio never leaves your Mac
+          - paragraph [ref=e209]: Unlike cloud-based services, SpeakQuick processes everything locally. No uploads, no waiting, no privacy concerns. Your sensitive recordings stay exactly where they should—on your device.
+        - generic [ref=e213]:
+          - generic [ref=e215]:
+            - generic [ref=e216]:
+              - img [ref=e217]
+              - generic [ref=e221]: 10x
+            - paragraph [ref=e222]: Faster than cloud
+          - generic [ref=e223]:
+            - img [ref=e225]
+            - heading "Lightning Fast" [level=3] [ref=e227]
+          - paragraph [ref=e228]: 10x faster than cloud transcription
+          - paragraph [ref=e229]: Optimized for Apple Silicon. Transcribe an hour of audio in under 5 minutes. No internet connection required means no upload delays or network bottlenecks.
+        - generic [ref=e233]:
+          - generic [ref=e235]:
+            - generic [ref=e238]: 99%
+            - generic [ref=e242]:
+              - generic [ref=e243]: EN
+              - generic [ref=e244]: DE
+              - generic [ref=e245]: FR
+              - generic [ref=e246]: ES
+            - paragraph [ref=e247]: 99+ languages
+          - generic [ref=e248]:
+            - img [ref=e250]
+            - heading "Incredibly Accurate" [level=3] [ref=e253]
+          - paragraph [ref=e254]: Powered by Whisper v3
+          - paragraph [ref=e255]: State-of-the-art AI that handles accents, technical jargon, and multiple speakers with ease. Industry-leading accuracy across 99+ languages.
+        - generic [ref=e259]:
+          - generic [ref=e261]:
+            - generic [ref=e262]:
+              - img [ref=e265]
+              - generic:
+                - img
+            - paragraph [ref=e267]: Drag & Drop
+          - generic [ref=e268]:
+            - img [ref=e270]
+            - heading "Dead Simple" [level=3] [ref=e273]
+          - paragraph [ref=e274]: Drag, drop, done
+          - paragraph [ref=e275]: No complicated workflows or steep learning curves. Just drag your audio file onto SpeakQuick and get perfect transcripts. It's transcription that actually works the way you expect.
+    - generic [ref=e277]:
+      - generic [ref=e278]:
+        - heading "Simple Pricing" [level=2] [ref=e279]
+        - paragraph [ref=e280]: One-time purchase. No subscriptions, no recurring fees. Own SpeakQuick forever.
+      - generic [ref=e281]:
+        - generic [ref=e282]:
+          - generic [ref=e283]:
+            - heading "Free Trial" [level=3] [ref=e284]
+            - generic [ref=e286]: Free
+            - paragraph [ref=e287]: Try before you buy. No credit card required.
+          - list [ref=e288]:
+            - listitem [ref=e289]:
+              - img [ref=e291]
+              - generic [ref=e293]: 60 minutes of transcription
+            - listitem [ref=e294]:
+              - img [ref=e296]
+              - generic [ref=e298]: All export formats
+            - listitem [ref=e299]:
+              - img [ref=e301]
+              - generic [ref=e303]: Speaker detection
+            - listitem [ref=e304]:
+              - img [ref=e306]
+              - generic [ref=e308]: Local processing
+            - listitem [ref=e309]:
+              - img [ref=e311]
+              - generic [ref=e313]: macOS app
+          - button "Download Free" [ref=e314] [cursor=pointer]
+        - generic [ref=e315]:
+          - generic [ref=e317]:
+            - img [ref=e318]
+            - text: Most Popular
+          - generic [ref=e320]:
+            - heading "Full Version" [level=3] [ref=e321]
+            - generic [ref=e322]:
+              - generic [ref=e323]: $49
+              - generic [ref=e324]: /one-time
+            - paragraph [ref=e325]: Lifetime license. All future updates included.
+          - list [ref=e326]:
+            - listitem [ref=e327]:
+              - img [ref=e329]
+              - generic [ref=e331]: Unlimited transcription
+            - listitem [ref=e332]:
+              - img [ref=e334]
+              - generic [ref=e336]: All export formats
+            - listitem [ref=e337]:
+              - img [ref=e339]
+              - generic [ref=e341]: Speaker detection
+            - listitem [ref=e342]:
+              - img [ref=e344]
+              - generic [ref=e346]: Local processing
+            - listitem [ref=e347]:
+              - img [ref=e349]
+              - generic [ref=e351]: Batch processing
+            - listitem [ref=e352]:
+              - img [ref=e354]
+              - generic [ref=e356]: Priority support
+            - listitem [ref=e357]:
+              - img [ref=e359]
+              - generic [ref=e361]: Lifetime updates
+          - button "Buy Now" [ref=e362] [cursor=pointer]
+      - paragraph [ref=e363]: 30-day money-back guarantee. No questions asked.
+    - generic [ref=e365]:
+      - generic [ref=e366]:
+        - heading "Frequently Asked Questions" [level=2] [ref=e367]
+        - paragraph [ref=e368]: Everything you need to know about SpeakQuick.
+      - generic [ref=e370]:
+        - heading "Does SpeakQuick work offline?" [level=3] [ref=e372]:
+          - button "Does SpeakQuick work offline?" [ref=e373] [cursor=pointer]:
+            - text: Does SpeakQuick work offline?
+            - img [ref=e374]
+        - heading "What audio formats are supported?" [level=3] [ref=e377]:
+          - button "What audio formats are supported?" [ref=e378] [cursor=pointer]:
+            - text: What audio formats are supported?
+            - img [ref=e379]
+        - heading "How accurate is the transcription?" [level=3] [ref=e382]:
+          - button "How accurate is the transcription?" [ref=e383] [cursor=pointer]:
+            - text: How accurate is the transcription?
+            - img [ref=e384]
+        - heading "Can it identify different speakers?" [level=3] [ref=e387]:
+          - button "Can it identify different speakers?" [ref=e388] [cursor=pointer]:
+            - text: Can it identify different speakers?
+            - img [ref=e389]
+        - heading "Is there a subscription fee?" [level=3] [ref=e392]:
+          - button "Is there a subscription fee?" [ref=e393] [cursor=pointer]:
+            - text: Is there a subscription fee?
+            - img [ref=e394]
+        - heading "What languages are supported?" [level=3] [ref=e397]:
+          - button "What languages are supported?" [ref=e398] [cursor=pointer]:
+            - text: What languages are supported?
+            - img [ref=e399]
+        - heading "Can I transcribe live audio?" [level=3] [ref=e402]:
+          - button "Can I transcribe live audio?" [ref=e403] [cursor=pointer]:
+            - text: Can I transcribe live audio?
+            - img [ref=e404]
+        - heading "What export formats are available?" [level=3] [ref=e407]:
+          - button "What export formats are available?" [ref=e408] [cursor=pointer]:
+            - text: What export formats are available?
+            - img [ref=e409]
+    - generic [ref=e412]:
+      - generic [ref=e413]:
+        - heading "Ready to transform your audio?" [level=2] [ref=e414]
+        - paragraph [ref=e415]: Download SpeakQuick today and experience the fastest, most private transcription on macOS.
+        - button "Download for Free" [ref=e416] [cursor=pointer]:
+          - img [ref=e417]
+          - text: Download for Free
+      - generic [ref=e420]:
+        - generic [ref=e421]:
+          - img [ref=e423]
+          - generic [ref=e426]: SpeakQuick
+        - generic [ref=e427]:
+          - link "Privacy Policy" [ref=e428] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms of Service" [ref=e429] [cursor=pointer]:
+            - /url: "#"
+          - link "Contact" [ref=e430] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e431]:
+          - link [ref=e432] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e433]
+          - link [ref=e435] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e436]
+      - generic [ref=e439]: © 2026 SpeakQuick. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=e445] [cursor=pointer]:
+    - img [ref=e446]
+  - alert [ref=e449]
+```
