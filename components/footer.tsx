@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useI18n } from "@/lib/i18n/index";
 import { Button } from "@/components/ui/button";
-import { Mic, Github, Twitter } from "lucide-react";
+import { Mic, Github, Twitter, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
+  const { t, language } = useI18n();
+
   return (
-    <footer className="w-full py-16 border-t border-border/50">
+    <footer className="w-full py-16 border-t border-border">
       <div className="container px-4 md:px-6">
-        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -16,61 +18,61 @@ export function Footer() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground mb-4">
-            Ready to transform your audio?
+          <h2 className="text-2xl sm:text-3xl font-mono font-semibold tracking-tight text-foreground mb-4">
+            {t.footer.cta.title}
           </h2>
           <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-            Download SpeakQuick today and experience the fastest, most private transcription on macOS.
+            {language === "de"
+              ? "Lade SpeakQuick noch heute herunter und erlebe die schnellste, privateste Transkription auf macOS."
+              : "Download SpeakQuick today and experience the fastest, most private transcription on macOS."}
           </p>
-          <Button size="lg" className="mac-pill rounded-xl px-8">
+          <Button size="lg" className="font-mono">
             <Mic className="w-4 h-4 mr-2" />
-            Download for Free
+            {t.footer.cta.button}
+            <ArrowUpRight className="w-4 h-4 ml-2" />
           </Button>
         </motion.div>
 
-        {/* Footer links */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border/50">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 border border-primary/30 flex items-center justify-center">
               <Mic className="w-4 h-4 text-primary" />
             </div>
-            <span className="font-semibold text-foreground">SpeakQuick</span>
+            <span className="font-mono font-semibold text-foreground">SpeakQuick</span>
           </div>
 
-          {/* Links */}
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">
-              Privacy Policy
+          <div className="flex items-center gap-6 text-sm font-mono text-muted-foreground">
+            <a href="#" className="hover:text-primary transition-colors">
+              {t.footer.links.privacy}
             </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              Terms of Service
+            <span className="text-border">/</span>
+            <a href="#" className="hover:text-primary transition-colors">
+              {t.footer.links.terms}
             </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              Contact
+            <span className="text-border">/</span>
+            <a href="#" className="hover:text-primary transition-colors">
+              {t.footer.links.support}
             </a>
           </div>
 
-          {/* Social */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a
               href="#"
-              className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+              className="w-9 h-9 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors"
             >
               <Twitter className="w-4 h-4" />
             </a>
             <a
               href="#"
-              className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+              className="w-9 h-9 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors"
             >
               <Github className="w-4 h-4" />
             </a>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center mt-8 text-sm text-muted-foreground">
-          © {new Date().getFullYear()} SpeakQuick. All rights reserved.
+        <div className="text-center mt-8 text-sm font-mono text-muted-foreground">
+          {t.footer.copyright}
         </div>
       </div>
     </footer>
