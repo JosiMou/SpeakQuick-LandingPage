@@ -100,14 +100,13 @@ export function MacDock({ progress }: MacDockProps) {
   );
 }
 
-/** SpeakQuick icon — engraved dark waveform on space grey, no border strokes.
- *  viewBox padded to match the visual size of macOS PNG icons which have
- *  transparent margins baked in. */
+/** SpeakQuick icon — engraved dark waveform on space grey, no border strokes */
 function SpeakQuickIcon() {
   return (
     <svg
-      viewBox="-30 -30 572 572"
+      viewBox="0 0 512 512"
       className="h-full w-full"
+      style={{ borderRadius: 12 }}
     >
       <defs>
         <linearGradient id="dkBg" x1="0%" y1="0%" x2="100%" y2="100%">
