@@ -128,7 +128,7 @@ function SpeakQuickIcon() {
           </feMerge>
         </filter>
       </defs>
-      <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#dkBg)" />
+      <rect x="32" y="32" width="448" height="448" rx="100" fill="url(#dkBg)" />
       <g fill="#1a1a1c" filter="url(#dkEngrave)">
         <rect x="114" y="192" width="44" height="180" rx="22" />
         <rect x="174" y="262" width="44" height="110" rx="22" />
