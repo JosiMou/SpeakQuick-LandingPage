@@ -152,13 +152,11 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
             </div>
           </div>
 
-          {/* Chat area — fills space above input */}
-          <div className="flex-1 px-[6px] py-[2px]" />
-
-          {/* Input — dictated text appears here */}
+          {/* Input — dictated text appears here, pushed to bottom */}
+          <div className="flex-1" />
           <div className="px-[6px] py-[6px]">
             <div
-              className="rounded-[4px] px-[6px] py-[3px] min-h-[18px]"
+              className="flex items-end gap-[3px] rounded-[4px] px-[6px] py-[3px] min-h-[18px]"
               style={{
                 border: typeProgress > 0
                   ? "1px solid rgba(0, 136, 255, 0.4)"
@@ -167,25 +165,39 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
                 transition: "border-color 0.3s, background 0.3s",
               }}
             >
-              {typeProgress > 0 ? (
-                <span className="text-[7px] text-white/70 leading-[10px]">
-                  {visibleText}
-                  {showCursor && (
-                    <span
-                      className="inline-block w-[3px] h-[8px] ml-[1px] align-middle"
-                      style={{
-                        background: "rgba(0, 136, 255, 0.8)",
-                        animation: "blink-cursor 1s step-end infinite",
-                      }}
-                    />
-                  )}
-                </span>
-              ) : (
-                <span className="text-[7px] text-white/20">Ask about this code...</span>
-              )}
+              <span className="flex-1 text-[7px] leading-[10px]">
+                {typeProgress > 0 ? (
+                  <span className="text-white/70">
+                    {visibleText}
+                    {showCursor && (
+                      <span
+                        className="inline-block w-[3px] h-[8px] ml-[1px] align-middle"
+                        style={{
+                          background: "rgba(0, 136, 255, 0.8)",
+                          animation: "blink-cursor 1s step-end infinite",
+                        }}
+                      />
+                    )}
+                  </span>
+                ) : (
+                  <span className="text-white/20">Ask about this code...</span>
+                )}
+              </span>
+              {/* Send arrow */}
+              <div
+                className="flex h-[12px] w-[12px] flex-shrink-0 items-center justify-center rounded-[3px]"
+                style={{
+                  background: typeProgress >= 1 ? "rgba(0, 136, 255, 0.8)" : "rgba(255,255,255,0.06)",
+                  transition: "background 0.3s",
+                }}
+              >
+                <svg width="7" height="7" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke={typeProgress >= 1 ? "#fff" : "rgba(255,255,255,0.25)"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
             </div>
             {/* Model selector */}
-            <div className="mt-[4px] flex items-center gap-[3px]">
+            <div className="mt-[3px] flex items-center gap-[3px]">
               <span className="text-[6px] text-white/25">Model:</span>
               <span className="text-[6px] text-white/40">claude-4-sonnet</span>
             </div>
