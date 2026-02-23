@@ -7,7 +7,7 @@ interface MacDockProps {
 }
 
 const apps = [
-  { id: "slack", label: "Slack", src: null as string | null },
+  { id: "slack", label: "Slack", src: "/demo/slack.png" },
   { id: "notes", label: "Notes", src: "/demo/notes.png" },
   { id: "codex", label: "Codex", src: "/demo/codex.png" },
   { id: "claude", label: "Claude Code", src: "/demo/claude.png" },
@@ -66,8 +66,6 @@ export function MacDock({ progress }: MacDockProps) {
                   className="h-full w-full object-contain"
                   style={{ transformOrigin: "bottom center" }}
                 />
-              ) : id === "slack" ? (
-                <SlackIcon />
               ) : (
                 <SpeakQuickIcon />
               )}
@@ -102,13 +100,14 @@ export function MacDock({ progress }: MacDockProps) {
   );
 }
 
-/** SpeakQuick icon — engraved dark waveform on space grey, no border strokes */
+/** SpeakQuick icon — engraved dark waveform on space grey, no border strokes.
+ *  viewBox padded to match the visual size of macOS PNG icons which have
+ *  transparent margins baked in. */
 function SpeakQuickIcon() {
   return (
     <svg
-      viewBox="0 0 512 512"
+      viewBox="-30 -30 572 572"
       className="h-full w-full"
-      style={{ borderRadius: 12 }}
     >
       <defs>
         <linearGradient id="dkBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -143,31 +142,3 @@ function SpeakQuickIcon() {
   );
 }
 
-/** Slack icon — simplified 4-color hash mark */
-function SlackIcon() {
-  return (
-    <svg
-      viewBox="0 0 512 512"
-      className="h-full w-full"
-      style={{ borderRadius: 12 }}
-    >
-      <rect width="512" height="512" rx="110" fill="#4A154B" />
-      {/* Top-left: blue */}
-      <rect x="170" y="108" width="36" height="100" rx="18" fill="#36C5F0" />
-      <rect x="108" y="172" width="100" height="36" rx="18" fill="#36C5F0" />
-      <circle cx="152" cy="152" r="18" fill="#36C5F0" />
-      {/* Top-right: green */}
-      <rect x="306" y="108" width="36" height="100" rx="18" fill="#2EB67D" />
-      <rect x="304" y="172" width="100" height="36" rx="18" fill="#2EB67D" />
-      <circle cx="360" cy="152" r="18" fill="#2EB67D" />
-      {/* Bottom-left: yellow */}
-      <rect x="170" y="304" width="36" height="100" rx="18" fill="#ECB22E" />
-      <rect x="108" y="304" width="100" height="36" rx="18" fill="#ECB22E" />
-      <circle cx="152" cy="360" r="18" fill="#ECB22E" />
-      {/* Bottom-right: red */}
-      <rect x="306" y="304" width="36" height="100" rx="18" fill="#E01E5A" />
-      <rect x="304" y="304" width="100" height="36" rx="18" fill="#E01E5A" />
-      <circle cx="360" cy="360" r="18" fill="#E01E5A" />
-    </svg>
-  );
-}
