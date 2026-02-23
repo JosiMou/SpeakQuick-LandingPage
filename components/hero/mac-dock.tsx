@@ -100,34 +100,34 @@ export function MacDock({ progress }: MacDockProps) {
   );
 }
 
-/** SpeakQuick's own icon (no installed app to extract from) */
+/** SpeakQuick's own icon — matches the actual app icon */
 function SpeakQuickIcon() {
   return (
-    <div
-      className="flex h-full w-full items-center justify-center rounded-[12px]"
-      style={{ background: "#0088FF" }}
+    <svg
+      viewBox="0 0 512 512"
+      className="h-full w-full"
+      style={{ borderRadius: 12 }}
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M12 4a3 3 0 00-3 3v5a3 3 0 006 0V7a3 3 0 00-3-3z"
-          fill="rgba(0,0,0,0.7)"
-        />
-        <path
-          d="M7 12a5 5 0 0010 0"
-          stroke="rgba(0,0,0,0.5)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <line
-          x1="12"
-          y1="17"
-          x2="12"
-          y2="20"
-          stroke="rgba(0,0,0,0.5)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    </div>
+      <defs>
+        <linearGradient id="dkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#5c5c62" />
+          <stop offset="50%" stopColor="#3a3a3e" />
+          <stop offset="100%" stopColor="#212124" />
+        </linearGradient>
+        <linearGradient id="dkNeon" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#00f2fe" />
+          <stop offset="100%" stopColor="#0055ff" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="512" height="512" rx="100" fill="url(#dkBg)" />
+      <g fill="url(#dkNeon)" opacity="0.9">
+        <rect x="126" y="166" width="44" height="180" rx="22" />
+        <rect x="186" y="236" width="44" height="110" rx="22" />
+        <rect x="246" y="186" width="44" height="160" rx="22" />
+        <circle cx="268" cy="136" r="22" />
+        <rect x="306" y="236" width="44" height="110" rx="22" />
+        <rect x="366" y="166" width="44" height="180" rx="22" />
+      </g>
+    </svg>
   );
 }

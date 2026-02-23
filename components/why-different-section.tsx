@@ -8,7 +8,7 @@ import { Zap, Shield, Globe, Clock } from "lucide-react";
 const CARDS = [
   { id: "local" as const, icon: Shield, metric: "100%", metricLabel: "Local" },
   { id: "speed" as const, icon: Zap, metric: "10x", metricLabel: "Faster" },
-  { id: "accurate" as const, icon: Globe, metric: "99+", metricLabel: "Languages" },
+  { id: "accurate" as const, icon: Globe, metric: "25+", metricLabel: "Languages" },
   { id: "simple" as const, icon: Clock, metric: "1", metricLabel: "Click" },
 ];
 

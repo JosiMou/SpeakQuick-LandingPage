@@ -26,6 +26,7 @@ export interface Translations {
     cards: Array<{
       title: string;
       description: string;
+      comingSoon?: boolean;
     }>;
   };
   whyDifferent: {
@@ -148,20 +149,21 @@ export const translations: Record<Language, Translations> = {
       subtitle: "Professional-grade transcription with the simplicity you expect from a Mac app.",
       cards: [
         {
+          title: "Push to Talk",
+          description: "Hold a global shortcut to dictate anywhere on your Mac. Release to transcribe. Works in any app, any text field.",
+        },
+        {
           title: "Works Offline",
           description: "All processing happens locally on your Mac. No cloud uploads, no internet required. Your recordings stay private.",
         },
         {
           title: "Speaker Detection",
           description: "Automatically identifies and labels different speakers. Perfect for meetings, interviews, and podcasts.",
+          comingSoon: true,
         },
         {
-          title: "99+ Languages",
-          description: "Industry-leading accuracy across 99 languages with automatic language detection.",
-        },
-        {
-          title: "Real-time Dictation",
-          description: "Transcribe live audio from your microphone with minimal latency. Pause and resume anytime.",
+          title: "25+ Languages",
+          description: "Industry-leading accuracy across 25 languages with automatic language detection.",
         },
         {
           title: "Smart Export",
@@ -190,7 +192,7 @@ export const translations: Record<Language, Translations> = {
         accurate: {
           title: "Incredibly Accurate",
           subhead: "State-of-the-art speech AI",
-          description: "Handles accents, technical jargon, and multiple speakers with ease. Industry-leading accuracy across 99+ languages.",
+          description: "Handles accents, technical jargon, and multiple speakers with ease. Industry-leading accuracy across 25+ languages.",
         },
         simple: {
           title: "Dead Simple",
@@ -233,7 +235,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           question: "How accurate is the transcription?",
-          answer: "SpeakQuick uses state-of-the-art speech recognition AI that achieves industry-leading accuracy across 99+ languages. It handles accents, technical terminology, and background noise exceptionally well.",
+          answer: "SpeakQuick uses state-of-the-art speech recognition AI that achieves industry-leading accuracy across 25+ languages. It handles accents, technical terminology, and background noise exceptionally well.",
         },
         {
           question: "Can I export to subtitle formats?",
@@ -318,20 +320,21 @@ export const translations: Record<Language, Translations> = {
       subtitle: "Professionelle Transkription mit der Einfachheit, die du von einer Mac-App erwartest.",
       cards: [
         {
+          title: "Push to Talk",
+          description: "Halte einen globalen Shortcut gedrückt, um überall auf deinem Mac zu diktieren. Loslassen zum Transkribieren. Funktioniert in jeder App, jedem Textfeld.",
+        },
+        {
           title: "Offline verfügbar",
           description: "Alle Verarbeitung geschieht lokal auf deinem Mac. Keine Cloud-Uploads, kein Internet nötig. Deine Aufnahmen bleiben privat.",
         },
         {
           title: "Sprechererkennung",
           description: "Erkennt und beschriftet automatisch verschiedene Sprecher. Perfekt für Meetings, Interviews und Podcasts.",
+          comingSoon: true,
         },
         {
-          title: "99+ Sprachen",
-          description: "Branchenführende Genauigkeit in 99 Sprachen mit automatischer Spracherkennung.",
-        },
-        {
-          title: "Echtzeit-Diktat",
-          description: "Transkribiere Live-Audio vom Mikrofon mit minimaler Latenz. Jederzeit pausieren und fortfahren.",
+          title: "25+ Sprachen",
+          description: "Branchenführende Genauigkeit in 25 Sprachen mit automatischer Spracherkennung.",
         },
         {
           title: "Smarter Export",
@@ -360,7 +363,7 @@ export const translations: Record<Language, Translations> = {
         accurate: {
           title: "Unglaublich präzise",
           subhead: "Modernste Sprach-KI",
-          description: "Kommt mühelos mit Akzenten, Fachjargon und mehreren Sprechern zurecht. Branchenführende Genauigkeit in über 99 Sprachen.",
+          description: "Kommt mühelos mit Akzenten, Fachjargon und mehreren Sprechern zurecht. Branchenführende Genauigkeit in über 25 Sprachen.",
         },
         simple: {
           title: "Totale Einfachheit",
@@ -403,7 +406,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           question: "Wie präzise ist die Transkription?",
-          answer: "SpeakQuick verwendet modernste Spracherkennungs-KI mit branchenführender Genauigkeit in über 99 Sprachen. Es kommt hervorragend mit Akzenten, Fachterminologie und Hintergrundgeräuschen zurecht.",
+          answer: "SpeakQuick verwendet modernste Spracherkennungs-KI mit branchenführender Genauigkeit in über 25 Sprachen. Es kommt hervorragend mit Akzenten, Fachterminologie und Hintergrundgeräuschen zurecht.",
         },
         {
           question: "Kann ich in Untertitelformate exportieren?",

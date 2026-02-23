@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useI18n } from "@/lib/i18n/index";
-import { Shield, Users, Globe, Zap, FileText, Cpu } from "lucide-react";
+import { Shield, Users, Globe, Keyboard, FileText, Cpu } from "lucide-react";
 
-const FEATURE_ICONS = [Shield, Users, Globe, Zap, FileText, Cpu];
+const FEATURE_ICONS = [Keyboard, Shield, Users, Globe, FileText, Cpu];
 
 export function FeaturesSection() {
   const { t } = useI18n();
@@ -32,6 +32,7 @@ export function FeaturesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {FEATURE_ICONS.map((Icon, i) => {
             const cardData = t.features.cards[i];
+            const isComingSoon = cardData?.comingSoon;
 
             return (
               <motion.div
@@ -43,8 +44,14 @@ export function FeaturesSection() {
                   delay: 0.1 + i * 0.08,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="card-surface rounded-[20px] p-6"
+                className={`card-surface rounded-[20px] p-6 relative${isComingSoon ? " opacity-60" : ""}`}
               >
+                {isComingSoon && (
+                  <span className="absolute top-4 right-4 text-[10px] font-medium uppercase tracking-wider text-white/40 border border-white/10 rounded-full px-2.5 py-0.5">
+                    Coming Soon
+                  </span>
+                )}
+
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04]">
                   <Icon className="h-5 w-5 text-white/60" />
                 </div>
