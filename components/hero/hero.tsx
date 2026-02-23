@@ -2,8 +2,9 @@
 
 import { useRef, useState, useCallback } from "react";
 import { useScrollProgress } from "@/hooks/use-scroll-progress";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { type TimeTheme } from "./demo-gradient-layers";
-import { FRAME_INSETS } from "./demo-frame";
+import { FRAME_INSETS, FRAME_INSETS_MOBILE } from "./demo-frame";
 import { HeroIntro } from "./hero-intro";
 import { DemoFrame } from "./demo-frame";
 import { DemoGradientLayers } from "./demo-gradient-layers";
@@ -22,6 +23,7 @@ export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const progress = useScrollProgress(containerRef);
   const [theme, setTheme] = useState<TimeTheme>("night");
+  const isMobile = useIsMobile();
 
   const handlePlayDemo = useCallback(() => {
     if (!containerRef.current) return;
@@ -34,12 +36,13 @@ export function Hero() {
   }, []);
 
   // Compute live insets so content padding matches the clip-path at every scroll position
+  const insets = isMobile ? FRAME_INSETS_MOBILE : FRAME_INSETS;
   const frameProgress = Math.max(0, Math.min(1, (progress - 0.10) / 0.20));
   const eased = frameProgress * frameProgress * (3 - 2 * frameProgress);
   const pad = {
-    top: eased * FRAME_INSETS.top,
-    side: eased * FRAME_INSETS.side,
-    bottom: eased * FRAME_INSETS.bottom,
+    top: eased * insets.top,
+    side: eased * insets.side,
+    bottom: eased * insets.bottom,
   };
 
   return (
@@ -80,13 +83,18 @@ export function Hero() {
                 progress={progress}
                 showThreshold={0.32}
                 className="absolute"
-                style={{
+                style={isMobile ? {
+                  left: "3%",
+                  top: "3%",
+                  width: "94%",
+                  height: "82%",
+                  zIndex: progress < 0.55 ? 30 : 10,
+                } : {
                   left: "2%",
                   top: "5%",
                   width: "44%",
                   height: "78%",
                   zIndex: progress < 0.55 ? 30 : 10,
-                  transition: "z-index 0s",
                 }}
               >
                 <WindowMeeting progress={progress} />
@@ -97,13 +105,18 @@ export function Hero() {
                 progress={progress}
                 showThreshold={0.55}
                 className="absolute"
-                style={{
+                style={isMobile ? {
+                  left: "3%",
+                  top: "3%",
+                  width: "94%",
+                  height: "82%",
+                  zIndex: progress >= 0.55 && progress < 0.77 ? 30 : 20,
+                } : {
                   left: "42%",
                   top: "2%",
                   width: "28%",
                   height: "62%",
                   zIndex: progress >= 0.55 && progress < 0.77 ? 30 : 20,
-                  transition: "z-index 0s",
                 }}
               >
                 <WindowNotes progress={progress} />
@@ -114,13 +127,18 @@ export function Hero() {
                 progress={progress}
                 showThreshold={0.77}
                 className="absolute"
-                style={{
+                style={isMobile ? {
+                  left: "3%",
+                  top: "3%",
+                  width: "94%",
+                  height: "82%",
+                  zIndex: progress >= 0.77 ? 30 : 15,
+                } : {
                   left: "38%",
                   top: "22%",
                   width: "58%",
                   height: "75%",
                   zIndex: progress >= 0.77 ? 30 : 15,
-                  transition: "z-index 0s",
                 }}
               >
                 <WindowTerminal progress={progress} />

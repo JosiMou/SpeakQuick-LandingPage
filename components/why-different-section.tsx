@@ -25,7 +25,7 @@ export function WhyDifferentSection() {
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="max-w-2xl mb-16"
         >
-          <span className="section-label text-[#1CECBB]">Why SpeakQuick</span>
+          <span className="section-label text-white/40">Why SpeakQuick</span>
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
             {t.whyDifferent.title}
           </h2>

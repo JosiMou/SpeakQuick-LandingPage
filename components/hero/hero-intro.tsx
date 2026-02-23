@@ -19,14 +19,22 @@ interface HeroIntroProps {
 export function HeroIntro({ progress, onPlayDemo }: HeroIntroProps) {
   const { t } = useI18n();
 
-  const opacity = Math.max(0, 1 - progress / 0.2);
+  // Fade over first 20% of scroll, with lift + scale for depth
+  const t1 = Math.min(1, progress / 0.2);
+  const opacity = Math.max(0, 1 - t1);
+  const translateY = t1 * -15; // lift up to -15%
+  const scale = 1 + t1 * 0.2; // scale from 1 to 1.2
 
   if (opacity <= 0) return null;
 
   return (
     <div
       className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center"
-      style={{ opacity }}
+      style={{
+        opacity,
+        transform: `translateY(${translateY}%) scale(${scale})`,
+        pointerEvents: opacity < 0.1 ? "none" : "auto",
+      }}
     >
       <h1 className="max-w-4xl font-serif">
         <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal italic tracking-normal leading-[1.15] text-white/85 hero-text-glow">

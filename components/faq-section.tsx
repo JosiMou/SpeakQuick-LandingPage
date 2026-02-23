@@ -25,7 +25,7 @@ export function FaqSection() {
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="mb-16"
         >
-          <span className="section-label text-[#FF9DC4]">FAQ</span>
+          <span className="section-label text-white/40">FAQ</span>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12">

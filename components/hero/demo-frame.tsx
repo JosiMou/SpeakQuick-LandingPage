@@ -1,6 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 
 // Max inset values at full animation progress.
 // Exported so child components can use the same values for positioning.
@@ -11,22 +12,32 @@ export const FRAME_INSETS = {
   radius: 16,
 } as const;
 
+export const FRAME_INSETS_MOBILE = {
+  top: 20,
+  side: 16,
+  bottom: 28,
+  radius: 12,
+} as const;
+
 interface DemoFrameProps {
   progress: number;
   children: ReactNode;
 }
 
 export function DemoFrame({ progress, children }: DemoFrameProps) {
+  const isMobile = useIsMobile();
+  const insets = isMobile ? FRAME_INSETS_MOBILE : FRAME_INSETS;
+
   // Interpolate from full screen (progress 0) to rounded monitor frame (progress 0.30)
   const frameProgress = Math.max(0, Math.min(1, (progress - 0.10) / 0.20));
 
   // Smooth-step easing
   const eased = frameProgress * frameProgress * (3 - 2 * frameProgress);
 
-  const topInset = eased * FRAME_INSETS.top;
-  const sideInset = eased * FRAME_INSETS.side;
-  const bottomInset = eased * FRAME_INSETS.bottom;
-  const borderRadius = eased * FRAME_INSETS.radius;
+  const topInset = eased * insets.top;
+  const sideInset = eased * insets.side;
+  const bottomInset = eased * insets.bottom;
+  const borderRadius = eased * insets.radius;
 
   // Outer glow opacity scales with frame progress
   const glowOpacity = eased;
