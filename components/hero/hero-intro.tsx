@@ -37,10 +37,10 @@ export function HeroIntro({ progress, onPlayDemo }: HeroIntroProps) {
       }}
     >
       <h1 className="max-w-4xl font-serif">
-        <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal italic tracking-normal leading-[1.15] text-white/85 hero-text-glow">
+        <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal italic tracking-normal leading-[1.2] text-white/85 hero-text-glow">
           {t.hero.headline}
         </span>
-        <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal italic tracking-normal leading-[1.15] mt-1 hero-gradient-text">
+        <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal italic tracking-normal leading-[1.2] mt-1 pb-1 hero-gradient-text">
           {t.hero.headlineHighlight}
         </span>
       </h1>
