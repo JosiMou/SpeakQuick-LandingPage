@@ -43,8 +43,11 @@ export const metadata: Metadata = {
   creator: "SpeakQuick",
   publisher: "SpeakQuick",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
