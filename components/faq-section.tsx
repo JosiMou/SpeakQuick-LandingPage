@@ -15,14 +15,26 @@ export function FaqSection() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section ref={ref} className="w-full section-spacing relative bg-muted/20">
+    <section ref={ref} className="w-full section-spacing relative overflow-hidden">
+      <div className="absolute inset-0 bg-muted/20" />
       <div className="absolute inset-0 grid-bg opacity-10" />
+      <div className="absolute inset-0 noise-overlay" />
+      
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-30 pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            background: 'radial-gradient(ellipse at center, hsl(186 100% 50% / 0.1) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
+      </div>
       
       <div className="container px-4 md:px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-12"
         >
           <div className="text-xs font-mono text-primary uppercase tracking-wider mb-3">
@@ -39,26 +51,35 @@ export function FaqSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="max-w-3xl mx-auto border border-border bg-card"
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="max-w-3xl mx-auto border border-border bg-card relative overflow-hidden"
         >
-          <Accordion type="single" collapsible className="w-full">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/3 to-transparent opacity-50 pointer-events-none" />
+          
+          <Accordion type="single" collapsible className="w-full relative z-10">
             {t.faq.items.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="px-6">
-                  <span className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-muted-foreground">
-                      {String(index + 1).padStart(2, "0")}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -10 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.3 + index * 0.05, duration: 0.3 }}
+              >
+                <AccordionItem value={`item-${index}`}>
+                  <AccordionTrigger className="px-6 hover:text-primary transition-colors">
+                    <span className="flex items-center gap-3">
+                      <span className="text-xs font-mono text-primary">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      {item.question}
                     </span>
-                    {item.question}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pl-14">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
         </motion.div>

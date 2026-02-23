@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useMemo, useState, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useI18n } from "@/lib/i18n/index";
 import { Mic, Users, FileText, Globe, Cpu, Zap, Clock, Shield } from "lucide-react";
@@ -165,22 +165,25 @@ function CategoryTabs({
 }) {
   return (
     <div className="flex gap-1 overflow-x-auto pb-1 -mb-1">
-      {categories.map((c) => {
+      {categories.map((c, index) => {
         const active = c.name === activeCategory;
         return (
-          <button
+          <motion.button
             key={c.name}
             onClick={() => onSelect(c.name)}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.3 }}
             className={`
-              px-4 py-2 text-sm font-mono whitespace-nowrap transition-colors
+              px-4 py-2 text-sm font-mono whitespace-nowrap transition-all duration-300
               ${active
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-[0_0_15px_hsl(186_100%_50%_/_0.3)]"
+                : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
               }
             `}
           >
             {c.name}
-          </button>
+          </motion.button>
         );
       })}
     </div>
@@ -197,7 +200,7 @@ function FeatureList({
   onSelect: (title: string) => void;
 }) {
   return (
-    <div className="border border-border bg-card">
+    <div className="border border-border bg-card overflow-hidden">
       <div className="px-4 py-3 border-b border-border bg-muted/30">
         <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
           {category.tagline}
@@ -205,22 +208,31 @@ function FeatureList({
       </div>
 
       <div className="divide-y divide-border">
-        {category.features.map((f) => {
+        {category.features.map((f, index) => {
           const active = f.title === activeFeature;
           return (
-            <button
+            <motion.button
               key={f.title}
               onClick={() => onSelect(f.title)}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.3 }}
               className={`
-                w-full text-left px-4 py-4 transition-colors
-                ${active ? "bg-muted/40 border-l-2 border-l-primary" : "border-l-2 border-l-transparent hover:bg-muted/20"}
+                w-full text-left px-4 py-4 transition-all duration-300
+                ${active 
+                  ? "bg-primary/5 border-l-2 border-l-primary shadow-[inset_0_0_20px_hsl(186_100%_50%_/_0.05)]" 
+                  : "border-l-2 border-l-transparent hover:bg-muted/20"
+                }
               `}
             >
               <div className="flex items-start gap-3">
                 <div
                   className={`
-                    p-1.5 border transition-colors
-                    ${active ? "border-primary/30 text-primary" : "border-border text-muted-foreground"}
+                    p-1.5 border transition-all duration-300
+                    ${active 
+                      ? "border-primary/50 text-primary shadow-[0_0_10px_hsl(186_100%_50%_/_0.3)]" 
+                      : "border-border text-muted-foreground"
+                    }
                   `}
                 >
                   {f.icon}
@@ -228,7 +240,7 @@ function FeatureList({
                 <div className="min-w-0 flex-1">
                   <div
                     className={`
-                      font-mono text-sm transition-colors
+                      font-mono text-sm transition-colors duration-300
                       ${active ? "text-foreground" : "text-foreground/80"}
                     `}
                   >
@@ -239,7 +251,7 @@ function FeatureList({
                   </div>
                 </div>
               </div>
-            </button>
+            </motion.button>
           );
         })}
       </div>
@@ -249,19 +261,22 @@ function FeatureList({
 
 function DetailPanel({ feature }: { feature: Feature }) {
   return (
-    <div className="border border-border bg-card p-6 h-full flex flex-col">
+    <div className="border border-border bg-card p-6 h-full flex flex-col relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none" />
+      
       <AnimatePresence mode="wait">
         <motion.div
           key={feature.title}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.2 }}
-          className="flex-1 flex flex-col"
+          initial={{ opacity: 0, y: 15, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -15, scale: 0.98 }}
+          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="flex-1 flex flex-col relative z-10"
         >
           <div className="flex items-center gap-3">
-            <div className="p-2 border border-primary/30 text-primary">
+            <div className="p-2 border border-primary/30 text-primary relative">
               {feature.icon}
+              <div className="absolute inset-0 bg-primary/20" style={{ filter: 'blur(8px)' }} />
             </div>
             <h3 className="text-xl font-mono font-semibold tracking-tight text-foreground">
               {feature.title}
@@ -273,18 +288,25 @@ function DetailPanel({ feature }: { feature: Feature }) {
           </p>
 
           <ul className="mt-6 space-y-3">
-            {feature.bullets.map((b) => (
-              <li key={b} className="flex gap-3 text-sm text-muted-foreground">
-                <span className="mt-1.5 h-1.5 w-1.5 bg-primary flex-shrink-0" />
+            {feature.bullets.map((b, index) => (
+              <motion.li
+                key={b}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+                className="flex gap-3 text-sm text-muted-foreground"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 bg-primary flex-shrink-0 shadow-[0_0_6px_hsl(186_100%_50%_/_0.5)]" />
                 <span className="leading-relaxed">{b}</span>
-              </li>
+              </motion.li>
             ))}
           </ul>
 
           <div className="mt-auto pt-8">
-            <div className="border-2 border-dashed border-border bg-muted/20 aspect-video flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-12 h-12 border border-border flex items-center justify-center mx-auto mb-3 text-muted-foreground">
+            <div className="border border-dashed border-border bg-muted/10 aspect-video flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 grid-bg opacity-20" />
+              <div className="text-center relative z-10">
+                <div className="w-12 h-12 border border-primary/30 flex items-center justify-center mx-auto mb-3 text-primary animate-breathe">
                   {feature.icon}
                 </div>
                 <span className="text-sm font-mono text-muted-foreground/70">
@@ -341,15 +363,27 @@ export function FeaturesSection() {
       ref={ref}
       className="relative section-spacing px-6 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/5 to-background" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] opacity-30 pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            background: 'radial-gradient(ellipse at center, hsl(186 100% 50% / 0.1) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
+      </div>
 
       <div className="relative max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-12"
         >
+          <div className="text-xs font-mono text-primary uppercase tracking-wider mb-3">
+            // Features
+          </div>
           <h2 className="text-4xl sm:text-5xl font-mono font-semibold tracking-tight text-foreground">
             {t.features.title}
           </h2>
@@ -359,14 +393,16 @@ export function FeaturesSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="terminal-window"
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="terminal-window relative"
         >
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/3 to-transparent opacity-50 pointer-events-none" />
+          
           <TerminalHeader title={t.features.windowTitle} />
 
-          <div className="p-5 sm:p-6">
+          <div className="p-5 sm:p-6 relative">
             <CategoryTabs
               categories={featureCategories}
               activeCategory={activeCategory}

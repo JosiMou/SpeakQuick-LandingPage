@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useI18n } from "@/lib/i18n/index";
 import { Zap, Shield, Clock, Globe } from "lucide-react";
-
-const ACCENT_HSL = "186 100% 50%";
+import { useRef, useState, useEffect } from "react";
 
 function getDifferentiatorCards(t: ReturnType<typeof useI18n>["t"]) {
   return [
@@ -68,21 +67,72 @@ function MetricCard({
   isVisible: boolean;
 }) {
   const Icon = card.icon;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePosition({ x, y });
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
       className="h-full"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="tech-card h-full p-6 flex flex-col">
-        <div className="flex items-start justify-between mb-6">
-          <div className="p-2 border border-border text-muted-foreground">
+      <motion.div 
+        className="tech-card h-full p-6 flex flex-col relative overflow-hidden"
+        style={{
+          ['--mouse-x' as string]: `${mousePosition.x}%`,
+          ['--mouse-y' as string]: `${mousePosition.y}%`,
+        }}
+        animate={{
+          scale: isHovered ? 1.02 : 1,
+          y: isHovered ? -4 : 0,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
+        <div 
+          className="absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, hsl(186 100% 50% / 0.1) 0%, transparent 50%)`,
+            opacity: isHovered ? 1 : 0,
+          }}
+        />
+
+        <div className="flex items-start justify-between mb-6 relative z-10">
+          <div 
+            className={`p-2 border transition-all duration-300 ${
+              isHovered 
+                ? 'border-primary/50 text-primary' 
+                : 'border-border text-muted-foreground'
+            }`}
+          >
             <Icon className="w-5 h-5" />
           </div>
           <div className="text-right">
-            <div className="text-3xl font-mono font-bold text-primary">
+            <div 
+              className={`text-3xl font-mono font-bold transition-all duration-300 ${
+                isHovered ? 'text-primary' : 'text-foreground'
+              }`}
+              style={{
+                textShadow: isHovered ? '0 0 20px hsl(186 100% 50% / 0.5)' : 'none',
+              }}
+            >
               {card.metric}
             </div>
             <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -91,7 +141,7 @@ function MetricCard({
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 relative z-10">
           <h3 className="text-lg font-mono font-semibold tracking-tight text-foreground mb-1">
             {card.title}
           </h3>
@@ -103,16 +153,21 @@ function MetricCard({
           </p>
         </div>
 
-        <div className="divider mt-6 pt-4">
-          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-            <span className="w-1.5 h-1.5 bg-primary" />
-            {card.id === "local" && "Zero cloud dependency"}
-            {card.id === "speed" && "Apple Silicon optimized"}
-            {card.id === "accurate" && "Whisper v3 powered"}
-            {card.id === "simple" && "Drag and drop"}
-          </div>
+        <div className="divider-fade mt-6 mb-4" />
+        
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground relative z-10">
+          <motion.span 
+            className="w-1.5 h-1.5 bg-primary"
+            animate={{
+              boxShadow: isHovered ? '0 0 8px hsl(186 100% 50%)' : 'none',
+            }}
+          />
+          {card.id === "local" && "Zero cloud dependency"}
+          {card.id === "speed" && "Apple Silicon optimized"}
+          {card.id === "accurate" && "Whisper v3 powered"}
+          {card.id === "simple" && "Drag and drop"}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -129,13 +184,24 @@ export function WhyDifferentSection() {
       className="w-full section-spacing relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-muted/20" />
-      <div className="absolute inset-0 grid-bg opacity-20" />
+      <div className="absolute inset-0 grid-bg opacity-15" />
+      <div className="absolute inset-0 noise-overlay" />
+
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] opacity-30 pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            background: 'radial-gradient(ellipse at center, hsl(186 100% 50% / 0.08) 0%, transparent 60%)',
+            filter: 'blur(80px)',
+          }}
+        />
+      </div>
 
       <div className="container px-4 md:px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="max-w-2xl mb-12"
         >
           <div className="text-xs font-mono text-primary uppercase tracking-wider mb-3">

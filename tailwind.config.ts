@@ -6,6 +6,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.{md,mdx}",
   ],
   theme: {
     container: {
@@ -83,12 +84,50 @@ const config: Config = {
           "51%, 100%": { opacity: "0" },
         },
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         "stagger-in": {
           "0%": { opacity: "0", transform: "translateX(-8px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(186 100% 50% / 0.2)" 
+          },
+          "50%": { 
+            boxShadow: "0 0 30px hsl(186 100% 50% / 0.4), 0 0 60px hsl(186 100% 50% / 0.2)" 
+          },
+        },
+        "breathe": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.01)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "cursor-glow": {
+          "0%, 100%": { 
+            opacity: "0.3",
+            transform: "translate(-50%, -50%) scale(1)" 
+          },
+          "50%": { 
+            opacity: "0.5",
+            transform: "translate(-50%, -50%) scale(1.1)" 
+          },
         },
       },
       animation: {
@@ -97,12 +136,22 @@ const config: Config = {
         "scan-line": "scan-line 4s linear infinite",
         "waveform-bar": "waveform-bar 0.6s ease-in-out infinite",
         "cursor-blink": "cursor-blink 1s step-end infinite",
-        "fade-up": "fade-up 0.5s ease-out forwards",
+        "fade-up": "fade-up 0.6s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
         "stagger-in": "stagger-in 0.4s ease-out forwards",
+        "scale-in": "scale-in 0.5s ease-out forwards",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "breathe": "breathe 4s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "shimmer": "shimmer 3s linear infinite",
+        "cursor-glow": "cursor-glow 3s ease-in-out infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;
 
 export default config;
