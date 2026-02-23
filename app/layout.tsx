@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n/index";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.speakquick.app";
@@ -78,8 +93,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased">
+    <html lang="en" className={`dark ${inter.variable} ${instrumentSerif.variable}`}>
+      <body className="font-sans antialiased">
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

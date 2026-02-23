@@ -69,7 +69,7 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
               className="flex items-center gap-[4px] px-[10px] py-[4px]"
               style={{
                 background: "#181818",
-                borderTop: "1.5px solid hsl(186, 100%, 50%)",
+                borderTop: "1.5px solid #0088FF",
                 borderRight: "0.5px solid rgba(255,255,255,0.1)",
               }}
             >

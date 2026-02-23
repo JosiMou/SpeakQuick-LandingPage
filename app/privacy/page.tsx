@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-mono mb-8"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Home
@@ -25,20 +25,20 @@ export default function PrivacyPage() {
           <div className="w-8 h-8 border border-primary/30 flex items-center justify-center">
             <Mic className="w-4 h-4 text-primary" />
           </div>
-          <span className="font-mono font-semibold text-foreground">
+          <span className="font-semibold text-foreground">
             SpeakQuick
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           Privacy Policy
         </h1>
 
-        <p className="text-sm text-muted-foreground font-mono mb-12">
+        <p className="text-sm text-muted-foreground mb-12">
           Last updated: February 21, 2026
         </p>
 
-        <div className="prose prose-invert max-w-none prose-headings:font-mono prose-headings:font-semibold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground">
+        <div className="prose prose-invert max-w-none prose-headings:font-semibold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground">
           <section className="mb-10">
             <h2>Your Privacy Matters</h2>
             <p>

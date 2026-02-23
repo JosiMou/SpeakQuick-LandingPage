@@ -48,7 +48,7 @@ export function BlogFeed({
 
       {/* Active filter indicator */}
       {query && (
-        <div className="flex items-center gap-2 text-sm text-muted-foreground font-mono">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <span>
             {filteredPosts.length} {labels.resultCount}
           </span>

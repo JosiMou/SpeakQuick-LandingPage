@@ -20,7 +20,7 @@ export function DemoFloatingNav({ progress }: DemoFloatingNavProps) {
         {items.map((item: string, i: number) => (
           <span
             key={i}
-            className="px-3 py-1 text-xs font-mono text-white/50 transition-colors hover:text-white/80"
+            className="px-3 py-1 text-xs text-white/50 transition-colors hover:text-white/80"
           >
             {item}
           </span>

@@ -111,7 +111,7 @@ export function WindowMeeting({ progress }: WindowMeetingProps) {
                   {showCursor && (
                     <span
                       className="inline-block w-[1px] h-[7px] animate-pulse ml-[1px] align-baseline"
-                      style={{ background: "hsl(186,100%,50%)" }}
+                      style={{ background: "#0088FF" }}
                     />
                   )}
                 </span>

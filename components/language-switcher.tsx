@@ -1,7 +1,6 @@
 "use client";
 
-import { useI18n, Language } from "@/lib/i18n/index";
-import { Globe } from "lucide-react";
+import { useI18n } from "@/lib/i18n/index";
 
 export function LanguageSwitcher() {
   const { language, setLanguage } = useI18n();
@@ -13,11 +12,10 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-3 py-1.5 border border-border bg-muted/50 hover:border-primary/30 hover:bg-muted text-xs font-mono transition-colors"
+      className="px-3 py-1.5 text-sm text-white/50 hover:text-white/80 transition-colors rounded-full"
       aria-label={`Switch to ${language === "en" ? "German" : "English"}`}
     >
-      <Globe className="w-3.5 h-3.5 text-muted-foreground" />
-      <span className="text-muted-foreground">{language === "en" ? "DE" : "EN"}</span>
+      {language === "en" ? "DE" : "EN"}
     </button>
   );
 }

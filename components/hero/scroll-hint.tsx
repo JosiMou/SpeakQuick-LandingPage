@@ -17,7 +17,7 @@ export function ScrollHint({ progress }: ScrollHintProps) {
       className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/60"
       style={{ opacity }}
     >
-      <span className="text-sm font-mono">{t.hero.scrollText}</span>
+      <span className="text-sm">{t.hero.scrollText}</span>
       <svg
         width="24"
         height="24"

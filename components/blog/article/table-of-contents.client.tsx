@@ -57,7 +57,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
 
   return (
     <nav aria-label="Table of contents" className="text-sm">
-      <p className="font-mono font-medium text-foreground mb-3 text-xs uppercase tracking-wider">
+      <p className="font-medium text-foreground mb-3 text-xs uppercase tracking-wider">
         On this page
       </p>
       <ul className="space-y-2">

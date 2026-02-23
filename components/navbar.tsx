@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Mic } from "lucide-react";
 import { useI18n } from "@/lib/i18n/index";
 import { LanguageSwitcher } from "./language-switcher";
 
@@ -18,38 +17,49 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-        {/* Logo */}
-        <a href="/" className="flex items-center gap-2 group">
-          <div className="w-7 h-7 border border-primary/30 flex items-center justify-center transition-all group-hover:border-primary/60 group-hover:shadow-[0_0_10px_hsl(186_100%_50%_/_0.15)]">
-            <Mic className="w-3.5 h-3.5 text-primary" />
-          </div>
-          <span className="font-mono font-semibold text-sm text-foreground">
-            SpeakQuick
-          </span>
-        </a>
-
-        {/* Navigation links + language switcher */}
-        <div className="flex items-center gap-6">
+    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
+      <motion.nav
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="pointer-events-auto"
+      >
+        <div
+          className={`flex items-center gap-1 rounded-full border px-1.5 py-1 transition-all duration-300 ${
+            scrolled
+              ? "bg-white/[0.06] backdrop-blur-xl border-white/[0.08]"
+              : "bg-white/[0.04] backdrop-blur-md border-white/[0.06]"
+          }`}
+        >
+          <a
+            href="/"
+            className="px-3.5 py-1.5 text-sm text-white/70 hover:text-white transition-colors rounded-full"
+          >
+            Home
+          </a>
           <a
             href={language === "de" ? "/de/blog" : "/blog"}
-            className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="px-3.5 py-1.5 text-sm text-white/70 hover:text-white transition-colors rounded-full"
           >
             Blog
           </a>
+          <a
+            href="#pricing"
+            className="px-3.5 py-1.5 text-sm text-white/70 hover:text-white transition-colors rounded-full"
+          >
+            Pricing
+          </a>
+
           <LanguageSwitcher />
+
+          <a
+            href="#pricing"
+            className="ml-0.5 px-4 py-1.5 text-sm font-medium text-black bg-white rounded-full hover:bg-white/90 transition-colors"
+          >
+            Download
+          </a>
         </div>
-      </div>
-    </motion.nav>
+      </motion.nav>
+    </div>
   );
 }

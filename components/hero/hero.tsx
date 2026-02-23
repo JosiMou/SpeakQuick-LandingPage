@@ -16,6 +16,7 @@ import { WindowNotes } from "./window-notes";
 import { WindowTerminal } from "./window-terminal";
 import { MacDock } from "./mac-dock";
 import { ScrollHint } from "./scroll-hint";
+import { HeroBackground } from "./hero-background";
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -45,8 +46,8 @@ export function Hero() {
     <section ref={containerRef} className="relative" style={{ height: "350vh" }}>
       {/* Fixed viewport container */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Background base */}
-        <div className="absolute inset-0 bg-background" />
+        {/* Atmospheric background: mesh gradient + animated orbs */}
+        <HeroBackground />
 
         {/* Demo frame with gradient layers inside */}
         <DemoFrame progress={progress}>

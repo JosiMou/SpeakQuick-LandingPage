@@ -2,17 +2,12 @@ export type Language = "en" | "de";
 
 export interface Translations {
   hero: {
-    badge: string;
     headline: string;
     headlineHighlight: string;
     subtitle: string;
+    subtitleLight: string;
     downloadButton: string;
     watchDemo: string;
-    metaInfo: {
-      macOS: string;
-      trial: string;
-      noSubscription: string;
-    };
     scrollText: string;
     demo: {
       windowTitle: string;
@@ -28,21 +23,10 @@ export interface Translations {
   features: {
     title: string;
     subtitle: string;
-    windowTitle: string;
-    categories: {
-      transcription: {
-        name: string;
-        tagline: string;
-      };
-      export: {
-        name: string;
-        tagline: string;
-      };
-      privacy: {
-        name: string;
-        tagline: string;
-      };
-    };
+    cards: Array<{
+      title: string;
+      description: string;
+    }>;
   };
   whyDifferent: {
     title: string;
@@ -83,6 +67,8 @@ export interface Translations {
   };
   faq: {
     title: string;
+    supportTitle: string;
+    supportDescription: string;
     items: Array<{
       question: string;
       answer: string;
@@ -124,17 +110,12 @@ export interface Translations {
 export const translations: Record<Language, Translations> = {
   en: {
     hero: {
-      badge: "Now with Whisper v3",
-      headline: "Turn Audio Into",
-      headlineHighlight: "Accurate Text.",
-      subtitle: "AI-powered transcription for podcasts, meetings, and interviews. Local processing, speaker detection, and export to any format.",
-      downloadButton: "Download for macOS",
+      headline: "Transcribe in seconds.",
+      headlineHighlight: "Not in the cloud.",
+      subtitle: "On-device speech AI powered by Apple Silicon.",
+      subtitleLight: "No internet. No uploads. No waiting.",
+      downloadButton: "Download for Mac",
       watchDemo: "Watch Demo",
-      metaInfo: {
-        macOS: "macOS 13.0+",
-        trial: "Free 7-Day Trial",
-        noSubscription: "No subscription required",
-      },
       scrollText: "Scroll to explore",
       demo: {
         windowTitle: "SpeakQuick",
@@ -165,21 +146,32 @@ export const translations: Record<Language, Translations> = {
     features: {
       title: "Everything you need for transcription",
       subtitle: "Professional-grade transcription with the simplicity you expect from a Mac app.",
-      windowTitle: "Feature Explorer",
-      categories: {
-        transcription: {
-          name: "Transcription",
-          tagline: "State-of-the-art speech recognition powered by OpenAI Whisper.",
+      cards: [
+        {
+          title: "Works Offline",
+          description: "All processing happens locally on your Mac. No cloud uploads, no internet required. Your recordings stay private.",
         },
-        export: {
-          name: "Export & Formats",
-          tagline: "Export your transcripts in any format you need.",
+        {
+          title: "Speaker Detection",
+          description: "Automatically identifies and labels different speakers. Perfect for meetings, interviews, and podcasts.",
         },
-        privacy: {
-          name: "Privacy & Speed",
-          tagline: "Your data stays yours. Process locally at incredible speeds.",
+        {
+          title: "99+ Languages",
+          description: "Industry-leading accuracy across 99 languages with automatic language detection.",
         },
-      },
+        {
+          title: "Real-time Dictation",
+          description: "Transcribe live audio from your microphone with minimal latency. Pause and resume anytime.",
+        },
+        {
+          title: "Smart Export",
+          description: "Export to SRT, VTT, JSON, CSV, and plain text. Customizable timestamps for any workflow.",
+        },
+        {
+          title: "Apple Silicon",
+          description: "Built for M-series chips. Transcribe an hour of audio in under 5 minutes with Neural Engine acceleration.",
+        },
+      ],
     },
     whyDifferent: {
       title: "Why SpeakQuick?",
@@ -197,8 +189,8 @@ export const translations: Record<Language, Translations> = {
         },
         accurate: {
           title: "Incredibly Accurate",
-          subhead: "Powered by Whisper v3",
-          description: "State-of-the-art AI that handles accents, technical jargon, and multiple speakers with ease. Industry-leading accuracy across 99+ languages.",
+          subhead: "State-of-the-art speech AI",
+          description: "Handles accents, technical jargon, and multiple speakers with ease. Industry-leading accuracy across 99+ languages.",
         },
         simple: {
           title: "Dead Simple",
@@ -228,6 +220,8 @@ export const translations: Record<Language, Translations> = {
     },
     faq: {
       title: "Frequently Asked Questions",
+      supportTitle: "Still have questions?",
+      supportDescription: "Check the documentation or reach out to our support team.",
       items: [
         {
           question: "Does SpeakQuick work offline?",
@@ -239,7 +233,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           question: "How accurate is the transcription?",
-          answer: "SpeakQuick uses OpenAI's Whisper v3 model, which achieves state-of-the-art accuracy across 99+ languages. It handles accents, technical terminology, and background noise exceptionally well.",
+          answer: "SpeakQuick uses state-of-the-art speech recognition AI that achieves industry-leading accuracy across 99+ languages. It handles accents, technical terminology, and background noise exceptionally well.",
         },
         {
           question: "Can I export to subtitle formats?",
@@ -268,7 +262,7 @@ export const translations: Record<Language, Translations> = {
     },
     blog: {
       metaTitle: "SpeakQuick Blog - Transcription Tips & Guides",
-      metaDescription: "Guides for audio transcription on macOS. Learn about Whisper AI, speaker detection, batch processing, and getting the most out of SpeakQuick.",
+      metaDescription: "Guides for audio transcription on macOS. Learn about speech AI, speaker detection, batch processing, and getting the most out of SpeakQuick.",
       indexTitle: "Blog",
       indexSubtitle: "Guides and tips for audio transcription on macOS with SpeakQuick.",
       searchPlaceholder: "Search posts...",
@@ -286,17 +280,12 @@ export const translations: Record<Language, Translations> = {
 
   de: {
     hero: {
-      badge: "Jetzt mit Whisper v3",
-      headline: "Wandle Audio in",
-      headlineHighlight: "Präzisen Text.",
-      subtitle: "KI-gestützte Transkription für Podcasts, Meetings und Interviews. Lokale Verarbeitung, Sprechererkennung und Export in jedes Format.",
-      downloadButton: "Für macOS herunterladen",
+      headline: "Transkribiere in Sekunden.",
+      headlineHighlight: "Nicht in der Cloud.",
+      subtitle: "On-Device Sprach-KI mit Apple Silicon.",
+      subtitleLight: "Kein Internet. Keine Uploads. Kein Warten.",
+      downloadButton: "Für Mac herunterladen",
       watchDemo: "Demo ansehen",
-      metaInfo: {
-        macOS: "macOS 13.0+",
-        trial: "7 Tage kostenlos testen",
-        noSubscription: "Kein Abonnement erforderlich",
-      },
       scrollText: "Scrollen zum Entdecken",
       demo: {
         windowTitle: "SpeakQuick",
@@ -327,21 +316,32 @@ export const translations: Record<Language, Translations> = {
     features: {
       title: "Alles, was du für Transkription brauchst",
       subtitle: "Professionelle Transkription mit der Einfachheit, die du von einer Mac-App erwartest.",
-      windowTitle: "Funktions-Explorer",
-      categories: {
-        transcription: {
-          name: "Transkription",
-          tagline: "Modernste Spracherkennung, angetrieben von OpenAI Whisper.",
+      cards: [
+        {
+          title: "Offline verfügbar",
+          description: "Alle Verarbeitung geschieht lokal auf deinem Mac. Keine Cloud-Uploads, kein Internet nötig. Deine Aufnahmen bleiben privat.",
         },
-        export: {
-          name: "Export & Formate",
-          tagline: "Exportiere deine Transkripte in jedem benötigten Format.",
+        {
+          title: "Sprechererkennung",
+          description: "Erkennt und beschriftet automatisch verschiedene Sprecher. Perfekt für Meetings, Interviews und Podcasts.",
         },
-        privacy: {
-          name: "Datenschutz & Geschwindigkeit",
-          tagline: "Deine Daten bleiben dir. Lokal verarbeitet mit unglaublicher Geschwindigkeit.",
+        {
+          title: "99+ Sprachen",
+          description: "Branchenführende Genauigkeit in 99 Sprachen mit automatischer Spracherkennung.",
         },
-      },
+        {
+          title: "Echtzeit-Diktat",
+          description: "Transkribiere Live-Audio vom Mikrofon mit minimaler Latenz. Jederzeit pausieren und fortfahren.",
+        },
+        {
+          title: "Smarter Export",
+          description: "Export als SRT, VTT, JSON, CSV und Klartext. Anpassbare Zeitstempel für jeden Workflow.",
+        },
+        {
+          title: "Apple Silicon",
+          description: "Für M-Chips entwickelt. Transkribiere eine Stunde Audio in unter 5 Minuten mit Neural Engine Beschleunigung.",
+        },
+      ],
     },
     whyDifferent: {
       title: "Warum SpeakQuick?",
@@ -359,8 +359,8 @@ export const translations: Record<Language, Translations> = {
         },
         accurate: {
           title: "Unglaublich präzise",
-          subhead: "Angetrieben von Whisper v3",
-          description: "Modernste KI, die mühelos mit Akzenten, Fachjargon und mehreren Sprechern umgeht. Branchenführende Genauigkeit in über 99 Sprachen.",
+          subhead: "Modernste Sprach-KI",
+          description: "Kommt mühelos mit Akzenten, Fachjargon und mehreren Sprechern zurecht. Branchenführende Genauigkeit in über 99 Sprachen.",
         },
         simple: {
           title: "Totale Einfachheit",
@@ -390,6 +390,8 @@ export const translations: Record<Language, Translations> = {
     },
     faq: {
       title: "Häufig gestellte Fragen",
+      supportTitle: "Noch Fragen?",
+      supportDescription: "Schau in die Dokumentation oder kontaktiere unser Support-Team.",
       items: [
         {
           question: "Funktioniert SpeakQuick offline?",
@@ -401,7 +403,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           question: "Wie präzise ist die Transkription?",
-          answer: "SpeakQuick verwendet OpenAIs Whisper v3 Modell, das in über 99 Sprachen modernste Genauigkeit erreicht. Es kommt hervorragend mit Akzenten, Fachterminologie und Hintergrundgeräuschen zurecht.",
+          answer: "SpeakQuick verwendet modernste Spracherkennungs-KI mit branchenführender Genauigkeit in über 99 Sprachen. Es kommt hervorragend mit Akzenten, Fachterminologie und Hintergrundgeräuschen zurecht.",
         },
         {
           question: "Kann ich in Untertitelformate exportieren?",
@@ -430,7 +432,7 @@ export const translations: Record<Language, Translations> = {
     },
     blog: {
       metaTitle: "SpeakQuick Blog - Transkriptions-Tipps & Anleitungen",
-      metaDescription: "Anleitungen zur Audio-Transkription auf macOS. Erfahre mehr über Whisper AI, Sprechererkennung, Stapelverarbeitung und wie du das Beste aus SpeakQuick herausholst.",
+      metaDescription: "Anleitungen zur Audio-Transkription auf macOS. Erfahre mehr über Sprach-KI, Sprechererkennung, Stapelverarbeitung und wie du das Beste aus SpeakQuick herausholst.",
       indexTitle: "Blog",
       indexSubtitle: "Anleitungen und Tipps zur Audio-Transkription auf macOS mit SpeakQuick.",
       searchPlaceholder: "Beiträge suchen...",

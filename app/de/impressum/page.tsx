@@ -15,7 +15,7 @@ export default function ImpressumPage() {
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-mono mb-8"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           Zurück zur Startseite
@@ -25,16 +25,16 @@ export default function ImpressumPage() {
           <div className="w-8 h-8 border border-primary/30 flex items-center justify-center">
             <Mic className="w-4 h-4 text-primary" />
           </div>
-          <span className="font-mono font-semibold text-foreground">
+          <span className="font-semibold text-foreground">
             SpeakQuick
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-12">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-12">
           Impressum
         </h1>
 
-        <div className="prose prose-invert max-w-none prose-headings:font-mono prose-headings:font-semibold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground">
+        <div className="prose prose-invert max-w-none prose-headings:font-semibold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground">
           <section className="mb-10">
             <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
             <p>

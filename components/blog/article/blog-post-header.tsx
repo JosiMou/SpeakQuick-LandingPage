@@ -26,7 +26,7 @@ export function BlogPostHeader({
       <nav className="flex items-center gap-1 text-sm text-muted-foreground mb-6">
         <Link
           href={blogHref}
-          className="hover:text-primary transition-colors font-mono"
+          className="hover:text-primary transition-colors"
         >
           Blog
         </Link>

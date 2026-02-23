@@ -75,7 +75,7 @@ function Callout({
   const s = styles[type]
   return (
     <div className={cn('my-6 rounded-lg border p-4', s.border, s.bg)}>
-      <p className="mb-2 font-mono text-sm font-semibold">
+      <p className="mb-2 text-sm font-semibold">
         <span className="mr-2">{s.icon}</span>
         {title || s.defaultTitle}
       </p>
@@ -100,7 +100,7 @@ function Panel({
   return (
     <div className="my-6 rounded-lg border border-border bg-card/50 p-6">
       {title && (
-        <h4 className="mb-3 font-mono text-base font-semibold text-foreground">
+        <h4 className="mb-3 text-base font-semibold text-foreground">
           {title}
         </h4>
       )}

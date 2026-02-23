@@ -101,7 +101,7 @@ export function WindowNotes({ progress }: WindowNotesProps) {
                     className="mt-[1px] flex h-[10px] w-[10px] flex-shrink-0 items-center justify-center rounded-[3px]"
                     style={{
                       border: isDone ? "none" : "1.5px solid #ccc",
-                      background: isDone ? "hsl(186,100%,40%)" : "transparent",
+                      background: isDone ? "#0088FF" : "transparent",
                     }}
                   >
                     {isDone && (
@@ -115,7 +115,7 @@ export function WindowNotes({ progress }: WindowNotesProps) {
                     {showCursor && (
                       <span
                         className="inline-block w-[1px] h-[8px] animate-pulse ml-[1px] align-baseline"
-                        style={{ background: "hsl(186,100%,40%)" }}
+                        style={{ background: "#0088FF" }}
                       />
                     )}
                   </p>

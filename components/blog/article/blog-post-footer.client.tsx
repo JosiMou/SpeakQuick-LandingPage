@@ -37,7 +37,7 @@ export function BlogPostFooter({
 
         <button
           onClick={handleCopyLink}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground bg-muted/50 hover:bg-muted rounded-lg transition-all font-mono"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground bg-muted/50 hover:bg-muted rounded-lg transition-all"
         >
           {copied ? (
             <>

@@ -25,7 +25,7 @@ export function BlogPostRow({
       className="group block py-6 border-b border-border/40 last:border-b-0 transition-colors hover:bg-muted/20 -mx-4 px-4 rounded-lg"
     >
       {/* Meta line */}
-      <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2 font-mono">
+      <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
         <span>{author}</span>
         <span className="text-border">·</span>
         <time dateTime={dateISO}>{dateLabel}</time>
@@ -45,7 +45,7 @@ export function BlogPostRow({
 
       {/* Read time */}
       {readTime && (
-        <p className="text-xs text-muted-foreground/70 mt-2 font-mono">
+        <p className="text-xs text-muted-foreground/70 mt-2">
           {readTime}
         </p>
       )}

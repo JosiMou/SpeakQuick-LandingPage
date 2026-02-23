@@ -105,7 +105,7 @@ function SpeakQuickIcon() {
   return (
     <div
       className="flex h-full w-full items-center justify-center rounded-[12px]"
-      style={{ background: "hsl(186, 100%, 50%)" }}
+      style={{ background: "#0088FF" }}
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
