@@ -192,7 +192,7 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
                 }}
               >
                 <svg width="7" height="7" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke={typeProgress >= 1 ? "#fff" : "rgba(255,255,255,0.25)"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M12 19V5M5 12l7-7 7 7" stroke={typeProgress >= 1 ? "#fff" : "rgba(255,255,255,0.25)"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             </div>
