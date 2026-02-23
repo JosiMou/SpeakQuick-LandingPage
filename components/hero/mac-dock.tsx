@@ -136,12 +136,12 @@ function SpeakQuickIcon() {
       <rect x="34" y="34" width="444" height="444" rx="98" fill="none" stroke="url(#dkBorder)" strokeWidth="3"/>
       <rect x="34" y="34" width="444" height="444" rx="98" fill="none" stroke="#000000" strokeOpacity="0.5" strokeWidth="4"/>
       <g fill="#1a1a1c" filter="url(#dkEngrave)">
-        <rect x="126" y="166" width="44" height="180" rx="22" />
-        <rect x="186" y="236" width="44" height="110" rx="22" />
-        <rect x="246" y="186" width="44" height="160" rx="22" />
-        <circle cx="268" cy="136" r="22" />
-        <rect x="306" y="236" width="44" height="110" rx="22" />
-        <rect x="366" y="166" width="44" height="180" rx="22" />
+        <rect x="114" y="192" width="44" height="180" rx="22" />
+        <rect x="174" y="262" width="44" height="110" rx="22" />
+        <rect x="234" y="212" width="44" height="160" rx="22" />
+        <circle cx="256" cy="162" r="22" />
+        <rect x="294" y="262" width="44" height="110" rx="22" />
+        <rect x="354" y="192" width="44" height="180" rx="22" />
       </g>
     </svg>
   );
