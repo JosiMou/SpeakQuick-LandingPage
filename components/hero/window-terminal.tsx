@@ -6,7 +6,7 @@ interface WindowTerminalProps {
   progress: number;
 }
 
-/** Code lines with syntax highlighting colors */
+/** Static code lines — always visible as context */
 const CODE_LINES: Array<{ num: number; tokens: Array<{ text: string; color: string }> }> = [
   { num: 45, tokens: [{ text: "  fn ", color: "#DB90A5" }, { text: "process_audio", color: "#9CCCC2" }, { text: "(", color: "#ccc" }, { text: "&self", color: "#DB90A5" }, { text: ", path: ", color: "#ccc" }, { text: "&Path", color: "#9CCCC2" }, { text: ") -> ", color: "#ccc" }, { text: "Result", color: "#9CCCC2" }, { text: "<", color: "#ccc" }, { text: "Transcript", color: "#9CCCC2" }, { text: "> {", color: "#ccc" }] },
   { num: 46, tokens: [{ text: "    let ", color: "#DB90A5" }, { text: "audio = ", color: "#ccc" }, { text: "AudioFile", color: "#9CCCC2" }, { text: "::load(path)?;", color: "#ccc" }] },
@@ -29,14 +29,24 @@ const CODE_LINES: Array<{ num: number; tokens: Array<{ text: string; color: stri
   { num: 63, tokens: [{ text: "  }", color: "#ccc" }] },
 ];
 
+/** The dictated prompt that types into the AI chat input */
+const DICTATED_TEXT = "Refactor this to process segments in parallel using rayon and add proper error handling for each chunk";
+
 /**
  * VS Code / Cursor-like code editor replica.
- * Shows SpeakQuick-related Rust code with syntax highlighting.
+ * Code is static context. During Cycle 3 (pill active),
+ * dictated text appears in the AI chat input.
  */
 export function WindowTerminal({ progress }: WindowTerminalProps) {
-  // Cycle 3: pill active 0.80–0.94, code lines type within that window
-  const typewriterStart = 0.82;
-  const totalLines = CODE_LINES.length;
+  // Cycle 3: pill active 0.80–0.94, dictated text types within that window
+  const typeStart = 0.82;
+  const typeEnd = 0.92;
+  const typeProgress = Math.max(0, Math.min(1, (progress - typeStart) / (typeEnd - typeStart)));
+
+  // How many characters to show
+  const charsVisible = Math.floor(typeProgress * DICTATED_TEXT.length);
+  const visibleText = DICTATED_TEXT.slice(0, charsVisible);
+  const showCursor = typeProgress > 0 && typeProgress < 1;
 
   return (
     <div className="flex h-full flex-col" style={{ background: "#181818" }}>
@@ -52,7 +62,7 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
         </div>
       </WindowTitleBar>
 
-      {/* Gradient separator like VS Code */}
+      {/* Gradient separator */}
       <div
         className="h-[1px] w-full"
         style={{
@@ -61,7 +71,7 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
       />
 
       <div className="flex flex-1 min-h-0">
-        {/* Code panel */}
+        {/* Code panel — static context */}
         <div className="flex flex-1 flex-col min-w-0">
           {/* File tab */}
           <div className="flex items-center" style={{ background: "#1e1e1e" }}>
@@ -73,15 +83,11 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
                 borderRight: "0.5px solid rgba(255,255,255,0.1)",
               }}
             >
-              {/* Rust icon */}
               <svg width="10" height="10" viewBox="0 0 24 24" fill="#DEA584">
                 <circle cx="12" cy="12" r="10" />
                 <text x="12" y="16" textAnchor="middle" fill="#000" fontSize="11" fontWeight="bold">R</text>
               </svg>
               <span className="text-[9px] text-white/80">mod.rs</span>
-              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" className="ml-1 opacity-0 group-hover:opacity-50">
-                <path d="M6 6l12 12M18 6L6 18" stroke="white" strokeWidth="2" />
-              </svg>
             </div>
           </div>
 
@@ -98,41 +104,29 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
             <span className="text-[8px] text-white/60">mod.rs</span>
           </div>
 
-          {/* Code area */}
+          {/* Code area — always visible */}
           <div className="flex-1 overflow-hidden py-[4px]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-            {CODE_LINES.map((line, i) => {
-              // Each line fades in based on scroll progress
-              const lineStart = typewriterStart + (i / totalLines) * 0.12;
-              const lineProgress = Math.max(0, Math.min(1, (progress - lineStart) / 0.02));
-
-              return (
-                <div
-                  key={line.num}
-                  className="flex items-center leading-[14px]"
-                  style={{ opacity: lineProgress > 0 ? 1 : 0.15 }}
+            {CODE_LINES.map((line) => (
+              <div key={line.num} className="flex items-center leading-[14px]">
+                <span
+                  className="w-[28px] flex-shrink-0 text-right pr-[8px] text-[8px] select-none"
+                  style={{ color: "rgba(255,255,255,0.15)" }}
                 >
-                  {/* Line number */}
-                  <span
-                    className="w-[28px] flex-shrink-0 text-right pr-[8px] text-[8px] select-none"
-                    style={{ color: "rgba(255,255,255,0.15)" }}
-                  >
-                    {line.num}
-                  </span>
-                  {/* Code tokens */}
-                  <span className="text-[8px] whitespace-pre">
-                    {line.tokens.map((token, j) => (
-                      <span key={j} style={{ color: token.color }}>
-                        {token.text}
-                      </span>
-                    ))}
-                  </span>
-                </div>
-              );
-            })}
+                  {line.num}
+                </span>
+                <span className="text-[8px] whitespace-pre">
+                  {line.tokens.map((token, j) => (
+                    <span key={j} style={{ color: token.color }}>
+                      {token.text}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right panel: AI chat (like Codex's assistant) */}
+        {/* Right panel: AI chat */}
         <div
           className="flex w-[120px] flex-shrink-0 flex-col"
           style={{
@@ -158,21 +152,37 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
             </div>
           </div>
 
-          {/* AI message */}
-          <div className="flex-1 px-[6px] py-[2px]">
-            <p className="text-[7px] leading-[10px] text-white/40">
-              The transcription pipeline processes audio through speaker detection, then iterates
-              segments for Whisper inference.
-            </p>
-          </div>
+          {/* Chat area — fills space above input */}
+          <div className="flex-1 px-[6px] py-[2px]" />
 
-          {/* Input */}
+          {/* Input — dictated text appears here */}
           <div className="px-[6px] py-[6px]">
             <div
-              className="rounded-[4px] px-[6px] py-[3px]"
-              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+              className="rounded-[4px] px-[6px] py-[3px] min-h-[18px]"
+              style={{
+                border: typeProgress > 0
+                  ? "1px solid rgba(0, 136, 255, 0.4)"
+                  : "1px solid rgba(255,255,255,0.1)",
+                background: typeProgress > 0 ? "rgba(0, 136, 255, 0.04)" : "transparent",
+                transition: "border-color 0.3s, background 0.3s",
+              }}
             >
-              <span className="text-[7px] text-white/20">Ask about this code...</span>
+              {typeProgress > 0 ? (
+                <span className="text-[7px] text-white/70 leading-[10px]">
+                  {visibleText}
+                  {showCursor && (
+                    <span
+                      className="inline-block w-[3px] h-[8px] ml-[1px] align-middle"
+                      style={{
+                        background: "rgba(0, 136, 255, 0.8)",
+                        animation: "blink-cursor 1s step-end infinite",
+                      }}
+                    />
+                  )}
+                </span>
+              ) : (
+                <span className="text-[7px] text-white/20">Ask about this code...</span>
+              )}
             </div>
             {/* Model selector */}
             <div className="mt-[4px] flex items-center gap-[3px]">
@@ -182,6 +192,13 @@ export function WindowTerminal({ progress }: WindowTerminalProps) {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes blink-cursor {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }
