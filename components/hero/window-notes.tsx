@@ -16,9 +16,9 @@ const DICTATED_NOTE =
  * so the connection between voice input and text output is visual.
  */
 export function WindowNotes({ progress }: WindowNotesProps) {
-  // Cycle 1: pill active 0.36–0.56, text types within that window
+  // Cycle 1: pill active 0.36–0.52, text types within that window
   const typeStart = 0.38;
-  const typeEnd = 0.55;
+  const typeEnd = 0.51;
   const typeProgress = Math.max(0, Math.min(1, (progress - typeStart) / (typeEnd - typeStart)));
 
   const charsVisible = Math.floor(typeProgress * DICTATED_NOTE.length);

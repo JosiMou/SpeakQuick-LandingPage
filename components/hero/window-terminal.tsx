@@ -34,13 +34,13 @@ const DICTATED_TEXT = "Refactor this to process segments in parallel using rayon
 
 /**
  * VS Code / Cursor-like code editor replica.
- * Code is static context. During Cycle 2 (pill active),
+ * Code is static context. During Cycle 3 (pill active),
  * dictated text appears in the AI chat input.
  */
 export function WindowTerminal({ progress }: WindowTerminalProps) {
-  // Cycle 2: pill active 0.64–0.84, dictated text types within that window
-  const typeStart = 0.66;
-  const typeEnd = 0.83;
+  // Cycle 3: pill active 0.78–0.92, dictated text types within that window
+  const typeStart = 0.80;
+  const typeEnd = 0.91;
   const typeProgress = Math.max(0, Math.min(1, (progress - typeStart) / (typeEnd - typeStart)));
 
   // How many characters to show

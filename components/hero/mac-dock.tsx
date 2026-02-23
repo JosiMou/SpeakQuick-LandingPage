@@ -7,14 +7,14 @@ interface MacDockProps {
 }
 
 const apps = [
-  { id: "zoom", label: "Zoom", src: "/demo/zoom.png" },
+  { id: "slack", label: "Slack", src: null as string | null },
   { id: "notes", label: "Notes", src: "/demo/notes.png" },
   { id: "codex", label: "Codex", src: "/demo/codex.png" },
   { id: "claude", label: "Claude Code", src: "/demo/claude.png" },
   {
     id: "speakquick",
     label: "SpeakQuick",
-    src: null as string | null, // SVG fallback for our own app
+    src: null as string | null,
   },
 ];
 
@@ -66,6 +66,8 @@ export function MacDock({ progress }: MacDockProps) {
                   className="h-full w-full object-contain"
                   style={{ transformOrigin: "bottom center" }}
                 />
+              ) : id === "slack" ? (
+                <SlackIcon />
               ) : (
                 <SpeakQuickIcon />
               )}
@@ -100,7 +102,7 @@ export function MacDock({ progress }: MacDockProps) {
   );
 }
 
-/** SpeakQuick's own icon — engraved dark waveform on space grey */
+/** SpeakQuick icon — engraved dark waveform on space grey, no border strokes */
 function SpeakQuickIcon() {
   return (
     <svg
@@ -113,10 +115,6 @@ function SpeakQuickIcon() {
           <stop offset="0%" stopColor="#5c5c62" />
           <stop offset="50%" stopColor="#3a3a3e" />
           <stop offset="100%" stopColor="#212124" />
-        </linearGradient>
-        <linearGradient id="dkBorder" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
         <filter id="dkEngrave" x="-20%" y="-20%" width="140%" height="140%">
           <feDropShadow dx="0" dy="2" stdDeviation="1" floodColor="#ffffff" floodOpacity="0.3" result="bottomLight"/>
@@ -132,9 +130,7 @@ function SpeakQuickIcon() {
           </feMerge>
         </filter>
       </defs>
-      <rect x="32" y="32" width="448" height="448" rx="100" fill="url(#dkBg)" />
-      <rect x="34" y="34" width="444" height="444" rx="98" fill="none" stroke="url(#dkBorder)" strokeWidth="3"/>
-      <rect x="34" y="34" width="444" height="444" rx="98" fill="none" stroke="#000000" strokeOpacity="0.5" strokeWidth="4"/>
+      <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#dkBg)" />
       <g fill="#1a1a1c" filter="url(#dkEngrave)">
         <rect x="114" y="192" width="44" height="180" rx="22" />
         <rect x="174" y="262" width="44" height="110" rx="22" />
@@ -143,6 +139,35 @@ function SpeakQuickIcon() {
         <rect x="294" y="262" width="44" height="110" rx="22" />
         <rect x="354" y="192" width="44" height="180" rx="22" />
       </g>
+    </svg>
+  );
+}
+
+/** Slack icon — simplified 4-color hash mark */
+function SlackIcon() {
+  return (
+    <svg
+      viewBox="0 0 512 512"
+      className="h-full w-full"
+      style={{ borderRadius: 12 }}
+    >
+      <rect width="512" height="512" rx="110" fill="#4A154B" />
+      {/* Top-left: blue */}
+      <rect x="170" y="108" width="36" height="100" rx="18" fill="#36C5F0" />
+      <rect x="108" y="172" width="100" height="36" rx="18" fill="#36C5F0" />
+      <circle cx="152" cy="152" r="18" fill="#36C5F0" />
+      {/* Top-right: green */}
+      <rect x="306" y="108" width="36" height="100" rx="18" fill="#2EB67D" />
+      <rect x="304" y="172" width="100" height="36" rx="18" fill="#2EB67D" />
+      <circle cx="360" cy="152" r="18" fill="#2EB67D" />
+      {/* Bottom-left: yellow */}
+      <rect x="170" y="304" width="36" height="100" rx="18" fill="#ECB22E" />
+      <rect x="108" y="304" width="100" height="36" rx="18" fill="#ECB22E" />
+      <circle cx="152" cy="360" r="18" fill="#ECB22E" />
+      {/* Bottom-right: red */}
+      <rect x="306" y="304" width="36" height="100" rx="18" fill="#E01E5A" />
+      <rect x="304" y="304" width="100" height="36" rx="18" fill="#E01E5A" />
+      <circle cx="360" cy="360" r="18" fill="#E01E5A" />
     </svg>
   );
 }

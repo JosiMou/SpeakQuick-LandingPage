@@ -13,6 +13,7 @@ import { TimeSwitcher } from "./time-switcher";
 import { RecorderPill } from "./recorder-pill";
 import { AppWindow } from "./app-window";
 import { WindowNotes } from "./window-notes";
+import { WindowSlack } from "./window-slack";
 import { WindowTerminal } from "./window-terminal";
 import { MacDock } from "./mac-dock";
 import { ScrollHint } from "./scroll-hint";
@@ -45,7 +46,7 @@ export function Hero() {
   };
 
   return (
-    <section ref={containerRef} className="relative" style={{ height: "350vh" }}>
+    <section ref={containerRef} className="relative" style={{ height: "450vh" }}>
       {/* Fixed viewport container */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Atmospheric background: mesh gradient + animated orbs */}
@@ -77,7 +78,7 @@ export function Hero() {
 
             {/* App windows: sequentially revealed with z-index following active cycle */}
             <div className="flex-1 min-h-0 relative">
-              {/* Notes (left) — Cycle 1: 0.32–0.58 */}
+              {/* Notes (left) — Cycle 1: 0.32–0.54 */}
               <AppWindow
                 progress={progress}
                 showThreshold={0.32}
@@ -87,35 +88,57 @@ export function Hero() {
                   top: "3%",
                   width: "94%",
                   height: "82%",
-                  zIndex: progress < 0.60 ? 30 : 10,
+                  zIndex: progress < 0.54 ? 30 : 10,
                 } : {
                   left: "2%",
-                  top: "3%",
+                  top: "5%",
                   width: "34%",
-                  height: "72%",
-                  zIndex: progress < 0.60 ? 30 : 10,
+                  height: "70%",
+                  zIndex: progress < 0.54 ? 30 : 10,
                 }}
               >
                 <WindowNotes progress={progress} />
               </AppWindow>
 
-              {/* Code editor (right, overlapping) — Cycle 2: 0.60–0.96 */}
+              {/* Slack (center) — Cycle 2: 0.54–0.75 */}
               <AppWindow
                 progress={progress}
-                showThreshold={0.60}
+                showThreshold={0.54}
                 className="absolute"
                 style={isMobile ? {
                   left: "3%",
                   top: "3%",
                   width: "94%",
                   height: "82%",
-                  zIndex: progress >= 0.60 ? 30 : 15,
+                  zIndex: progress >= 0.54 && progress < 0.75 ? 30 : 20,
                 } : {
-                  left: "28%",
-                  top: "10%",
-                  width: "68%",
-                  height: "85%",
-                  zIndex: progress >= 0.60 ? 30 : 15,
+                  left: "18%",
+                  top: "2%",
+                  width: "42%",
+                  height: "76%",
+                  zIndex: progress >= 0.54 && progress < 0.75 ? 30 : 20,
+                }}
+              >
+                <WindowSlack progress={progress} />
+              </AppWindow>
+
+              {/* Code editor (right, overlapping) — Cycle 3: 0.75–0.96 */}
+              <AppWindow
+                progress={progress}
+                showThreshold={0.75}
+                className="absolute"
+                style={isMobile ? {
+                  left: "3%",
+                  top: "3%",
+                  width: "94%",
+                  height: "82%",
+                  zIndex: progress >= 0.75 ? 30 : 15,
+                } : {
+                  left: "30%",
+                  top: "12%",
+                  width: "66%",
+                  height: "84%",
+                  zIndex: progress >= 0.75 ? 30 : 15,
                 }}
               >
                 <WindowTerminal progress={progress} />
