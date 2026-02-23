@@ -202,7 +202,7 @@ export const translations: Record<Language, Translations> = {
     pricing: {
       title: "Simple Pricing",
       subtitle: "One-time purchase. No subscriptions, no recurring fees. Own SpeakQuick forever.",
-      price: "$49",
+      price: "$38",
       period: "one-time",
       description: "Lifetime license. All future updates included.",
       trialNote: "Starts with a free 7-day trial. No credit card required.",
@@ -372,7 +372,7 @@ export const translations: Record<Language, Translations> = {
     pricing: {
       title: "Einfache Preisgestaltung",
       subtitle: "Einmaliger Kauf. Keine Abonnements, keine wiederkehrenden Gebühren. SpeakQuick gehört für immer dir.",
-      price: "49 €",
+      price: "38 €",
       period: "einmalig",
       description: "Lebenslange Lizenz. Alle zukünftigen Updates inklusive.",
       trialNote: "Beginnt mit einer kostenlosen 7-Tage-Testversion. Keine Kreditkarte erforderlich.",
