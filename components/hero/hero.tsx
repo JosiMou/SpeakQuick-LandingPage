@@ -12,7 +12,6 @@ import { DemoFloatingNav } from "./demo-floating-nav";
 import { TimeSwitcher } from "./time-switcher";
 import { RecorderPill } from "./recorder-pill";
 import { AppWindow } from "./app-window";
-import { WindowMeeting } from "./window-meeting";
 import { WindowNotes } from "./window-notes";
 import { WindowTerminal } from "./window-terminal";
 import { MacDock } from "./mac-dock";
@@ -78,7 +77,7 @@ export function Hero() {
 
             {/* App windows: sequentially revealed with z-index following active cycle */}
             <div className="flex-1 min-h-0 relative">
-              {/* Meeting (left, large) — Cycle 1: 0.32–0.54 */}
+              {/* Notes (left) — Cycle 1: 0.32–0.58 */}
               <AppWindow
                 progress={progress}
                 showThreshold={0.32}
@@ -88,57 +87,35 @@ export function Hero() {
                   top: "3%",
                   width: "94%",
                   height: "82%",
-                  zIndex: progress < 0.55 ? 30 : 10,
+                  zIndex: progress < 0.60 ? 30 : 10,
                 } : {
                   left: "2%",
-                  top: "5%",
-                  width: "44%",
-                  height: "78%",
-                  zIndex: progress < 0.55 ? 30 : 10,
-                }}
-              >
-                <WindowMeeting progress={progress} />
-              </AppWindow>
-
-              {/* Notes (top-right, medium) — Cycle 2: 0.55–0.76 */}
-              <AppWindow
-                progress={progress}
-                showThreshold={0.55}
-                className="absolute"
-                style={isMobile ? {
-                  left: "3%",
                   top: "3%",
-                  width: "94%",
-                  height: "82%",
-                  zIndex: progress >= 0.55 && progress < 0.77 ? 30 : 20,
-                } : {
-                  left: "42%",
-                  top: "2%",
-                  width: "28%",
-                  height: "62%",
-                  zIndex: progress >= 0.55 && progress < 0.77 ? 30 : 20,
+                  width: "34%",
+                  height: "72%",
+                  zIndex: progress < 0.60 ? 30 : 10,
                 }}
               >
                 <WindowNotes progress={progress} />
               </AppWindow>
 
-              {/* Code editor (right, large, overlapping) — Cycle 3: 0.77–0.96 */}
+              {/* Code editor (right, overlapping) — Cycle 2: 0.60–0.96 */}
               <AppWindow
                 progress={progress}
-                showThreshold={0.77}
+                showThreshold={0.60}
                 className="absolute"
                 style={isMobile ? {
                   left: "3%",
                   top: "3%",
                   width: "94%",
                   height: "82%",
-                  zIndex: progress >= 0.77 ? 30 : 15,
+                  zIndex: progress >= 0.60 ? 30 : 15,
                 } : {
-                  left: "38%",
-                  top: "22%",
-                  width: "58%",
-                  height: "75%",
-                  zIndex: progress >= 0.77 ? 30 : 15,
+                  left: "28%",
+                  top: "10%",
+                  width: "68%",
+                  height: "85%",
+                  zIndex: progress >= 0.60 ? 30 : 15,
                 }}
               >
                 <WindowTerminal progress={progress} />

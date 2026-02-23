@@ -9,10 +9,9 @@ interface RecorderPillProps {
 /**
  * Dictation recorder pill that cycles between active and idle states.
  *
- * Three recording cycles, each tied to one app window:
- *   Cycle 1 (Meeting):  active 0.36–0.53, text types 0.38–0.52
- *   Cycle 2 (Notes):    active 0.58–0.74, text types 0.60–0.74
- *   Cycle 3 (Code):     active 0.80–0.94, text types 0.82–0.94
+ * Two recording cycles, each tied to one app window:
+ *   Cycle 1 (Notes):  active 0.36–0.56, text types 0.38–0.55
+ *   Cycle 2 (Code):   active 0.64–0.84, text types 0.66–0.83
  *
  * The pill expands and shows waveform bars when active, then
  * shrinks back to a tiny bar when idle. This temporal coupling
@@ -20,9 +19,8 @@ interface RecorderPillProps {
  */
 
 const CYCLES = [
-  { start: 0.36, end: 0.53 },
-  { start: 0.58, end: 0.74 },
-  { start: 0.80, end: 0.94 },
+  { start: 0.36, end: 0.56 },
+  { start: 0.64, end: 0.84 },
 ];
 
 export function RecorderPill({ progress }: RecorderPillProps) {
