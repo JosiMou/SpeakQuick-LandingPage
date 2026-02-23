@@ -36,7 +36,7 @@ export async function BlogIndexPage({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <Link
-                  href={locale === 'de' ? '/de/blog' : '/blog'}
+                  href={locale === 'de' ? '/de' : '/'}
                   className="inline-flex items-center gap-2 mb-4 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <div className="w-6 h-6 border border-primary/30 flex items-center justify-center">
