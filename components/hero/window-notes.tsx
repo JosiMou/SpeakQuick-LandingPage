@@ -6,25 +6,27 @@ interface WindowNotesProps {
   progress: number;
 }
 
+/** Dictated text that types into the note body */
+const DICTATED_NOTE =
+  "Follow up with the design team about the new onboarding flow. They mentioned some concerns about the drop-off rate on step three. We should also look into simplifying the permissions screen before the next release.";
+
 /**
- * Apple Notes replica showing a voice-dictated to-do list.
- * Tasks appear via typewriter animation timed to the recorder pill,
- * so the connection between voice input and text output is visual, not labelled.
+ * Apple Notes replica showing voice-dictated prose.
+ * Text appears via typewriter animation timed to the recorder pill,
+ * so the connection between voice input and text output is visual.
  */
 export function WindowNotes({ progress }: WindowNotesProps) {
   // Cycle 2: pill active 0.58–0.74, text types within that window
-  const typewriterStart = 0.60;
+  const typeStart = 0.60;
+  const typeEnd = 0.73;
+  const typeProgress = Math.max(0, Math.min(1, (progress - typeStart) / (typeEnd - typeStart)));
 
-  const tasks = [
-    { text: "Review pull request from Lisa", delay: 0 },
-    { text: "Prepare slides for product demo", delay: 0.03 },
-    { text: "Send updated contract to legal", delay: 0.06 },
-    { text: "Book flights for Berlin conference", delay: 0.09 },
-    { text: "Call dentist to reschedule", delay: 0.12 },
-  ];
+  const charsVisible = Math.floor(typeProgress * DICTATED_NOTE.length);
+  const visibleText = DICTATED_NOTE.slice(0, charsVisible);
+  const showCursor = typeProgress > 0 && typeProgress < 1;
 
   const sidebarNotes = [
-    { title: "Today's Tasks", preview: "Review pull request from...", time: "8:31 AM", active: true },
+    { title: "Meeting Notes", preview: "Follow up with the design...", time: "8:31 AM", active: true },
     { title: "Project Ideas", preview: "Voice-first workflows for...", time: "Yesterday", active: false },
     { title: "Grocery List", preview: "Oat milk, avocados, bread...", time: "Feb 21", active: false },
   ];
@@ -77,54 +79,36 @@ export function WindowNotes({ progress }: WindowNotesProps) {
           </div>
 
           {/* Title */}
-          <div className="px-[12px] pb-[4px]">
+          <div className="px-[12px] pb-[6px]">
             <h3 className="text-[11px] font-bold" style={{ color: "#1D1D1D" }}>
-              Today&apos;s Tasks
+              Meeting Notes
             </h3>
           </div>
 
-          {/* To-do items */}
-          <div className="px-[12px] space-y-[5px]">
-            {tasks.map(({ text, delay }, i) => {
-              const lineProg = Math.max(0, Math.min(1, (progress - typewriterStart - delay) / 0.04));
-              if (lineProg <= 0) return null;
-
-              const visibleChars = Math.floor(lineProg * text.length);
-              const displayText = text.slice(0, visibleChars);
-              const showCursor = lineProg < 1;
-              const isDone = lineProg >= 1;
-
-              return (
-                <div key={i} className="flex items-start gap-[5px]">
-                  {/* Checkbox */}
-                  <div
-                    className="mt-[1px] flex h-[10px] w-[10px] flex-shrink-0 items-center justify-center rounded-[3px]"
-                    style={{
-                      border: isDone ? "none" : "1.5px solid #ccc",
-                      background: isDone ? "#0088FF" : "transparent",
-                    }}
-                  >
-                    {isDone && (
-                      <svg width="6" height="6" viewBox="0 0 6 6" fill="none">
-                        <path d="M1 3l1.5 1.5L5 1.5" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )}
-                  </div>
-                  <p className="text-[8px] leading-[12px]" style={{ color: "#333" }}>
-                    {displayText}
-                    {showCursor && (
-                      <span
-                        className="inline-block w-[1px] h-[8px] animate-pulse ml-[1px] align-baseline"
-                        style={{ background: "#0088FF" }}
-                      />
-                    )}
-                  </p>
-                </div>
-              );
-            })}
+          {/* Dictated body text */}
+          <div className="px-[12px] flex-1">
+            <p className="text-[8px] leading-[13px]" style={{ color: "#333" }}>
+              {visibleText}
+              {showCursor && (
+                <span
+                  className="inline-block w-[1px] h-[9px] ml-[1px] align-baseline"
+                  style={{ background: "#0088FF", animation: "blink-cursor 1s step-end infinite" }}
+                />
+              )}
+              {typeProgress === 0 && (
+                <span style={{ color: "#bbb" }}>Start typing or dictate...</span>
+              )}
+            </p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes blink-cursor {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }
