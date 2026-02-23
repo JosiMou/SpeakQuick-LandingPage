@@ -112,7 +112,7 @@ export const translations: Record<Language, Translations> = {
   en: {
     hero: {
       headline: "Transcribe in seconds.",
-      headlineHighlight: "Local on your Machine.",
+      headlineHighlight: "Local on your machine.",
       subtitle: "On-device speech AI powered by Apple Silicon.",
       subtitleLight: "No internet. No uploads. No waiting.",
       downloadButton: "Download for Mac",
