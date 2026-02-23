@@ -111,7 +111,7 @@ export const translations: Record<Language, Translations> = {
   en: {
     hero: {
       headline: "Transcribe in seconds.",
-      headlineHighlight: "Not in the cloud.",
+      headlineHighlight: "Local on your Machine.",
       subtitle: "On-device speech AI powered by Apple Silicon.",
       subtitleLight: "No internet. No uploads. No waiting.",
       downloadButton: "Download for Mac",
@@ -281,7 +281,7 @@ export const translations: Record<Language, Translations> = {
   de: {
     hero: {
       headline: "Transkribiere in Sekunden.",
-      headlineHighlight: "Nicht in der Cloud.",
+      headlineHighlight: "Lokal auf deinem Mac.",
       subtitle: "On-Device Sprach-KI mit Apple Silicon.",
       subtitleLight: "Kein Internet. Keine Uploads. Kein Warten.",
       downloadButton: "Für Mac herunterladen",
