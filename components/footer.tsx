@@ -47,7 +47,7 @@ function FooterWaveform() {
         style: "ios9",
         autostart: true,
         speed: 0.08,
-        amplitude: 1.5,
+        amplitude: 2.5,
         cover: true,
         curveDefinition: [
           { color: "180,190,255", supportLine: true },
@@ -61,11 +61,11 @@ function FooterWaveform() {
       const animate = () => {
         const t = performance.now() / 1000;
         const amp =
-          1.0 +
-          0.6 * Math.sin(t * 0.4) +
-          0.25 * Math.sin(t * 1.1) +
-          0.15 * Math.sin(t * 2.3);
-        sw?.setAmplitude(Math.max(0.3, amp));
+          1.6 +
+          0.8 * Math.sin(t * 0.4) +
+          0.35 * Math.sin(t * 1.1) +
+          0.2 * Math.sin(t * 2.3);
+        sw?.setAmplitude(Math.max(0.5, amp));
         ampFrame = requestAnimationFrame(animate);
       };
       ampFrame = requestAnimationFrame(animate);
@@ -80,16 +80,13 @@ function FooterWaveform() {
   return (
     <div
       ref={containerRef}
-      className="relative mt-16 mb-4 h-32 overflow-hidden"
+      className="relative mt-16 mb-4 h-40 overflow-hidden"
       aria-hidden="true"
       style={{
         opacity: isVisible ? 1 : 0,
         transition: "opacity 0.8s ease",
       }}
-    >
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0a0a0b] to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0a0a0b] to-transparent pointer-events-none z-10" />
-    </div>
+    />
   );
 }
 
