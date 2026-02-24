@@ -150,6 +150,35 @@ export function Footer() {
           </div>
         </motion.div>
 
+        {/* Waveform */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="flex items-end justify-center gap-[3px] h-16 mt-16 mb-4"
+        >
+          {Array.from({ length: 48 }, (_, i) => {
+            const center = 23.5;
+            const dist = Math.abs(i - center) / center;
+            const envelope = 1 - dist * dist;
+            const height = Math.max(4, Math.round(envelope * 48));
+            const delay = Math.abs(i - center) * 0.06;
+            return (
+              <div
+                key={i}
+                className="w-[2px] rounded-full"
+                style={{
+                  height: `${height}px`,
+                  background: `rgba(255, 255, 255, ${0.06 + envelope * 0.08})`,
+                  animation: `whisper-bar 1.8s ease-in-out ${delay}s infinite`,
+                  transformOrigin: "bottom",
+                }}
+              />
+            );
+          })}
+        </motion.div>
+
         {/* Copyright */}
         <motion.div
           initial={{ opacity: 0 }}
