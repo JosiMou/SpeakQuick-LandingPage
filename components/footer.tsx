@@ -1,10 +1,97 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/index";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { SPEAKQUICK_DOWNLOAD_URL } from "@/lib/download-url";
+
+/**
+ * Animated SiriWave (iOS9 style) used as a decorative voice
+ * visualization in the footer. Amplitude oscillates slowly
+ * to simulate ambient speech activity.
+ */
+function FooterWaveform() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || !containerRef.current) return;
+
+    type SiriWaveInstance = { setAmplitude: (v: number) => void; dispose: () => void };
+    let sw: SiriWaveInstance | null = null;
+    let ampFrame: number;
+
+    import("siriwave").then(({ default: SiriWave }) => {
+      if (!containerRef.current) return;
+
+      sw = new SiriWave({
+        container: containerRef.current,
+        style: "ios9",
+        autostart: true,
+        speed: 0.08,
+        amplitude: 1.5,
+        cover: true,
+        curveDefinition: [
+          { color: "180,190,255", supportLine: true },
+          { color: "80,130,255" },
+          { color: "140,90,245" },
+          { color: "60,200,210" },
+        ],
+      });
+
+      // Oscillate amplitude for organic speech-like movement
+      const animate = () => {
+        const t = performance.now() / 1000;
+        const amp =
+          1.0 +
+          0.6 * Math.sin(t * 0.4) +
+          0.25 * Math.sin(t * 1.1) +
+          0.15 * Math.sin(t * 2.3);
+        sw?.setAmplitude(Math.max(0.3, amp));
+        ampFrame = requestAnimationFrame(animate);
+      };
+      ampFrame = requestAnimationFrame(animate);
+    });
+
+    return () => {
+      cancelAnimationFrame(ampFrame);
+      sw?.dispose();
+    };
+  }, [isVisible]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative mt-16 mb-4 h-32 overflow-hidden"
+      aria-hidden="true"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 0.8s ease",
+      }}
+    >
+      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0a0a0b] to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0a0a0b] to-transparent pointer-events-none z-10" />
+    </div>
+  );
+}
 
 export function Footer() {
   const { t, language } = useI18n();
@@ -151,33 +238,7 @@ export function Footer() {
         </motion.div>
 
         {/* Waveform */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="flex items-end justify-center gap-[3px] h-16 mt-16 mb-4"
-        >
-          {Array.from({ length: 48 }, (_, i) => {
-            const center = 23.5;
-            const dist = Math.abs(i - center) / center;
-            const envelope = 1 - dist * dist;
-            const height = Math.max(4, Math.round(envelope * 48));
-            const delay = Math.abs(i - center) * 0.06;
-            return (
-              <div
-                key={i}
-                className="w-[2px] rounded-full"
-                style={{
-                  height: `${height}px`,
-                  background: `rgba(255, 255, 255, ${0.06 + envelope * 0.08})`,
-                  animation: `whisper-bar 1.8s ease-in-out ${delay}s infinite`,
-                  transformOrigin: "bottom",
-                }}
-              />
-            );
-          })}
-        </motion.div>
+        <FooterWaveform />
 
         {/* Copyright */}
         <motion.div
