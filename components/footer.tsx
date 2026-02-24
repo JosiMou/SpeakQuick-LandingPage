@@ -76,6 +76,16 @@ export function Footer() {
                   Download
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://namequick.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#888B91] hover:text-[#FAFAFA] transition-colors"
+                >
+                  NameQuick
+                </a>
+              </li>
             </ul>
           </div>
 
