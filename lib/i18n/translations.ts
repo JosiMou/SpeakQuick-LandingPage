@@ -29,34 +29,22 @@ export interface Translations {
       comingSoon?: boolean;
     }>;
   };
-  whyDifferent: {
-    title: string;
-    subtitle: string;
-    cards: {
-      local: {
-        title: string;
-        subhead: string;
-        description: string;
-      };
-      speed: {
-        title: string;
-        subhead: string;
-        description: string;
-      };
-      accurate: {
-        title: string;
-        subhead: string;
-        description: string;
-      };
-      simple: {
-        title: string;
-        subhead: string;
-        description: string;
-      };
-    };
-  };
   integrations: {
     subtitle: string;
+  };
+  speedComparison: {
+    title: string;
+    typingLabel: string;
+    voiceLabel: string;
+    unit: string;
+    barTyping: string;
+    barVoice: string;
+    subtitle: string;
+  };
+  ctaSection: {
+    title: string;
+    subtitle: string;
+    button: string;
   };
   pricing: {
     title: string;
@@ -181,31 +169,19 @@ export const translations: Record<Language, Translations> = {
     integrations: {
       subtitle: "SpeakQuick works in any app on your Mac. Hold to talk, release to type. Your voice becomes text wherever the cursor is.",
     },
-    whyDifferent: {
-      title: "Why SpeakQuick?",
-      subtitle: "Built specifically for macOS with privacy and performance at its core. No subscriptions, no cloud uploads, no compromises.",
-      cards: {
-        local: {
-          title: "Local First",
-          subhead: "Your audio never leaves your Mac",
-          description: "Unlike cloud-based services, SpeakQuick processes everything locally. No uploads, no waiting, no privacy concerns. Your sensitive recordings stay exactly where they should—on your device.",
-        },
-        speed: {
-          title: "Lightning Fast",
-          subhead: "10x faster than cloud transcription",
-          description: "Optimized for Apple Silicon. Transcribe an hour of audio in under 5 minutes. No internet connection required means no upload delays or network bottlenecks.",
-        },
-        accurate: {
-          title: "Incredibly Accurate",
-          subhead: "State-of-the-art speech AI",
-          description: "Handles accents, technical jargon, and multiple speakers with ease. Industry-leading accuracy across 25+ languages.",
-        },
-        simple: {
-          title: "Dead Simple",
-          subhead: "Drag, drop, done",
-          description: "No complicated workflows or steep learning curves. Just drag your audio file onto SpeakQuick and get perfect transcripts. It's transcription that actually works the way you expect.",
-        },
-      },
+    speedComparison: {
+      title: "Type less. Say more.",
+      typingLabel: "Typing",
+      voiceLabel: "SpeakQuick",
+      unit: "WPM",
+      barTyping: "Average typing speed",
+      barVoice: "Voice dictation speed",
+      subtitle: "Voice input is 3x faster than typing. Write emails, notes, and messages in a fraction of the time.",
+    },
+    ctaSection: {
+      title: "Start dictating for free",
+      subtitle: "7-day free trial. No credit card required.",
+      button: "Download for Mac",
     },
     pricing: {
       title: "Simple Pricing",
@@ -355,31 +331,19 @@ export const translations: Record<Language, Translations> = {
     integrations: {
       subtitle: "SpeakQuick funktioniert in jeder App auf deinem Mac. Halten zum Sprechen, loslassen zum Tippen. Deine Stimme wird zu Text, wo immer der Cursor steht.",
     },
-    whyDifferent: {
-      title: "Warum SpeakQuick?",
-      subtitle: "Speziell für macOS entwickelt mit Datenschutz und Leistung im Fokus. Keine Abonnements, keine Cloud-Uploads, keine Kompromisse.",
-      cards: {
-        local: {
-          title: "Lokal zuerst",
-          subhead: "Dein Audio verlässt nie deinen Mac",
-          description: "Im Gegensatz zu cloudbasierten Diensten verarbeitet SpeakQuick alles lokal. Keine Uploads, kein Warten, keine Datenschutzbedenken. Deine sensiblen Aufnahmen bleiben genau dort, wo sie sein sollten – auf deinem Gerät.",
-        },
-        speed: {
-          title: "Blitzschnell",
-          subhead: "10x schneller als Cloud-Transkription",
-          description: "Optimiert für Apple Silicon. Transkribiere eine Stunde Audio in unter 5 Minuten. Keine Internetverbindung erforderlich bedeutet keine Upload-Verzögerungen oder Netzwerkengpässe.",
-        },
-        accurate: {
-          title: "Unglaublich präzise",
-          subhead: "Modernste Sprach-KI",
-          description: "Kommt mühelos mit Akzenten, Fachjargon und mehreren Sprechern zurecht. Branchenführende Genauigkeit in über 25 Sprachen.",
-        },
-        simple: {
-          title: "Totale Einfachheit",
-          subhead: "Ziehen, ablegen, fertig",
-          description: "Keine komplizierten Workflows oder steilen Lernkurven. Ziehe einfach deine Audiodatei auf SpeakQuick und erhalte perfekte Transkripte. Transkription, die tatsächlich so funktioniert, wie du es erwartest.",
-        },
-      },
+    speedComparison: {
+      title: "Weniger tippen. Mehr sagen.",
+      typingLabel: "Tippen",
+      voiceLabel: "SpeakQuick",
+      unit: "WPM",
+      barTyping: "Durchschnittliche Tippgeschwindigkeit",
+      barVoice: "Spracheingabe-Geschwindigkeit",
+      subtitle: "Spracheingabe ist 3x schneller als Tippen. Schreibe E-Mails, Notizen und Nachrichten in einem Bruchteil der Zeit.",
+    },
+    ctaSection: {
+      title: "Jetzt kostenlos diktieren",
+      subtitle: "7 Tage kostenlos testen. Keine Kreditkarte erforderlich.",
+      button: "Für Mac herunterladen",
     },
     pricing: {
       title: "Einfache Preisgestaltung",

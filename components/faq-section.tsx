@@ -75,7 +75,7 @@ export function FaqSection() {
                     Documentation
                   </a>
                 </Button>
-                <Button variant="outline" className="w-full justify-start gap-2" asChild>
+                <Button variant="secondary" className="w-full justify-start gap-2" asChild>
                   <a href="mailto:support@speakquick.app">
                     <Mail className="w-4 h-4" />
                     Contact Support

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
+import { OpenPanelComponent } from "@openpanel/nextjs";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n/index";
 
@@ -98,6 +99,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${instrumentSerif.variable}`}>
       <body className="font-sans antialiased">
+        <OpenPanelComponent
+          clientId="041bf4d1-8f03-4761-b92d-63324e2f809b"
+          trackScreenViews={true}
+          trackOutgoingLinks={true}
+          trackAttributes={true}
+        />
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>
