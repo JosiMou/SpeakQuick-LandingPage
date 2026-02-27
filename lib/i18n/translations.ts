@@ -55,6 +55,9 @@ export interface Translations {
       };
     };
   };
+  integrations: {
+    subtitle: string;
+  };
   pricing: {
     title: string;
     subtitle: string;
@@ -174,6 +177,9 @@ export const translations: Record<Language, Translations> = {
           description: "Built for M-series chips. Transcribe an hour of audio in under 5 minutes with Neural Engine acceleration.",
         },
       ],
+    },
+    integrations: {
+      subtitle: "SpeakQuick works in any app on your Mac. Hold to talk, release to type. Your voice becomes text wherever the cursor is.",
     },
     whyDifferent: {
       title: "Why SpeakQuick?",
@@ -345,6 +351,9 @@ export const translations: Record<Language, Translations> = {
           description: "Für M-Chips entwickelt. Transkribiere eine Stunde Audio in unter 5 Minuten mit Neural Engine Beschleunigung.",
         },
       ],
+    },
+    integrations: {
+      subtitle: "SpeakQuick funktioniert in jeder App auf deinem Mac. Halten zum Sprechen, loslassen zum Tippen. Deine Stimme wird zu Text, wo immer der Cursor steht.",
     },
     whyDifferent: {
       title: "Warum SpeakQuick?",
