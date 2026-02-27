@@ -67,10 +67,6 @@ export interface Translations {
     }>;
   };
   footer: {
-    cta: {
-      title: string;
-      button: string;
-    };
     links: {
       privacy: string;
       terms: string;
@@ -230,10 +226,6 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     footer: {
-      cta: {
-        title: "Ready to transform your audio workflow?",
-        button: "Download for Free",
-      },
       links: {
         privacy: "Privacy Policy",
         terms: "Terms of Service",
@@ -392,10 +384,6 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     footer: {
-      cta: {
-        title: "Bereit, deinen Audio-Workflow zu transformieren?",
-        button: "Kostenlos herunterladen",
-      },
       links: {
         privacy: "Datenschutz",
         terms: "Nutzungsbedingungen",
