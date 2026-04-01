@@ -38,14 +38,14 @@
     </item>
     <item>
       <title>SpeakQuick 1.0.1</title>
-      <pubDate>Wed, 01 Apr 2026 19:36:22 +0000</pubDate>
+      <pubDate>Wed, 01 Apr 2026 19:40:50 +0000</pubDate>
       <sparkle:version>3</sparkle:version>
       <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
       <sparkle:releaseNotesLink>https://speakquick.app/updates/release-notes-1.0.1.html</sparkle:releaseNotesLink>
       <description><![CDATA[<p>SpeakQuick 1.0.1 is available.</p>]]></description>
       <enclosure
-        url="https://github.com/JosiMou/SpeakQuick/releases/download/v1.0.1/SpeakQuick-1.0.1.dmg"
+        url="https://speakquick.app/updates/downloads/SpeakQuick-1.0.1.dmg"
         length="24945454"
         type="application/octet-stream"
         sparkle:version="3"
