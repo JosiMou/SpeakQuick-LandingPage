@@ -4,12 +4,12 @@
       "version": "1.0.1",
       "build": 3,
       "channel": "stable",
-      "published_at": "2026-04-01T19:40:50Z",
+      "published_at": "2026-04-04T11:34:23Z",
       "dmg_url": "https://speakquick.app/updates/downloads/SpeakQuick-1.0.1.dmg",
       "dmg_size": 24945454,
       "ed_signature": "L4wFTe5sZw/zilwWwORZJN1ciiaS6AA3+gBw3Ad2GhiMd88rtpHVi/x3rT1JdM5stefvYNUPrYZy3SELP4DkAQ==",
       "minimum_system_version": "14.0",
-      "release_notes_url": "https://speakquick.app/updates/release-notes-1.0.1.html"
+      "release_notes_url": "https://speakquick.app/updates/release-notes-1.0.1"
     },
     {
       "version": "1.0.0",
